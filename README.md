@@ -1,4 +1,5 @@
 
+
 log4js-tagline is an extension of the node log4js package. Tags can be created and used independently or in combination with other tags.
 Included tag appenders:
 
@@ -52,6 +53,6 @@ Example output
 [2017-09-22 13:40:56.734] [INFO] armLog - route rte(/post/query/countSample) qry(countOLT) lne(processAction(): helper/server.js:110:14)
 [2017-09-22 13:40:56.737] [DEBUG] armLog - OLTs body({"query":"countVaderOLT","ip":"10.231.99.99"} lne(countOLTs(): queries/countVaderOLT.js:9:12)
 [2017-09-29 11:01:21.984] [INFO] default - hello info message rte(/hello_world)
-[2017-09-29 11:01:21.988] [ERROR] default - hello error message cnt(3) stopwatch(9/29/2017, 11:01:21 AM - 9/29/2017, 11:01:21 AM = 0.004/mili)
+[2017-09-29 11:01:21.988] [ERROR] default - hello error message count(3) stopwatch(9/29/2017, 11:01:21 AM - 9/29/2017, 11:01:21 AM = 0.004/mili)
 [2017-09-29 11:01:21.988] [DEBUG] default - hello message act(some messages) stopwatch(9/29/2017, 11:01:21 AM - 9/29/2017, 11:01:21 AM = 0.008/mili) rte(/hello_world)
 ```

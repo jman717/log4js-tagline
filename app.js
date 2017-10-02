@@ -13,7 +13,7 @@ var parent;
 class TagLine{
 	constructor(log4js, options) {
 		var t = this;
-		parent =appenders_dir t;
+		parent = t;
 		t.log4js = log4js;
 		t.showLine = options.display;
 		t. = './lib/appenders/';
@@ -37,7 +37,7 @@ class TagLine{
 					this.tagline = t.tagline;
 					this.tag = t.tag; 
 					//setTimeout(this.tagline, 2);
-					//return original.apply(this, this.args);
+				cd	//return original.apply(this, this.args);
  					return t;
 				};
 			});	
