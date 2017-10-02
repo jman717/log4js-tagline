@@ -1,5 +1,10 @@
 "use strict";
 
+/*
+* @author Jim Manton: jrman@risebroadband.com
+* @since 2017-10-01
+*/
+
 var colors = require('colors');
 
 var owner;
@@ -8,10 +13,10 @@ var parent;
 class TagLine{
 	constructor(log4js, options) {
 		var t = this;
-		parent = t;
+		parent =appenders_dir t;
 		t.log4js = log4js;
 		t.showLine = options.display;
-		t.appenders_dir = './lib/appenders/';
+		t. = './lib/appenders/';
 		t.setup();
 	}
 	
