@@ -1,4 +1,14 @@
 
+log4js-tagline is an extension of the node log4js package. Tags can be created and used independently or in combination with other tags.
+Included tag appenders:
+
+* route - to display path or service name
+* line - displays file name and line number
+* action - displays action name
+* stopwatch - displays time elapsed for a particular tag.
+* counter - displays counts applied to a tag.
+* error - displays an error from a try/catch blcok applied to a tag.
+
 Installation
 ---------
 ```
@@ -34,6 +44,8 @@ logger.level = 'debug';
 stw.setStart();
 logger.info('Hello World log').tag(rte).tag(lne).tagline();
 logger.debug('hello message').tag(act.setInput('some messages')).tag(stw.setStop()).tag(rte).tagline();
+```
+
 Example output
 ---------
 ```
