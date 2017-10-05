@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45e35283-03fd-4b6f-9521-2cf5f569cc8c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/appenders/line.js" afterPath="$PROJECT_DIR$/lib/appenders/line.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -27,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="line.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="line.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/appenders/line.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+            <state relative-caret-position="992">
+              <caret line="36" column="38" lean-forward="false" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -62,7 +61,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="280">
               <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1507241358891" expanded="true" signature="0:263" ph="{&quot;name&quot;: &quot;log4js-tagline&quot;...}" />
+                <marker date="1507241358891" expanded="true" signature="154:177" ph="{&quot;colors&quot;: &quot;*&quot;...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -87,7 +89,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="172">
@@ -256,12 +258,12 @@
       <updated>1506546149059</updated>
       <workItem from="1506546150333" duration="1243000" />
       <workItem from="1506572230407" duration="3874000" />
-      <workItem from="1506716694292" duration="12447000" />
+      <workItem from="1506716694292" duration="13092000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17564000" />
+    <option name="totallyTimeSpent" value="18209000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3872" height="2092" extended-state="6" />
@@ -319,7 +321,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1507241358891" expanded="true" signature="0:263" ph="{&quot;name&quot;: &quot;log4js-tagline&quot;...}" />
+            <marker date="1507241358891" expanded="true" signature="154:177" ph="{&quot;colors&quot;: &quot;*&quot;...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -378,7 +383,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
           <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1507241358891" expanded="true" signature="0:263" ph="{&quot;name&quot;: &quot;log4js-tagline&quot;...}" />
+            <marker date="1507241358891" expanded="true" signature="154:177" ph="{&quot;colors&quot;: &quot;*&quot;...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -497,15 +505,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/appenders/line.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
-          <folding />
+          <folding>
+            <marker date="1507241358891" expanded="true" signature="0:263" ph="{&quot;name&quot;: &quot;log4js-tagline&quot;...}" />
+            <marker date="1507241358891" expanded="true" signature="154:177" ph="{&quot;colors&quot;: &quot;*&quot;...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -513,6 +516,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="28" column="3" lean-forward="false" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/appenders/line.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="992">
+          <caret line="36" column="38" lean-forward="false" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
           <folding />
         </state>
       </provider>
