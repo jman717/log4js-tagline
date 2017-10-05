@@ -5,7 +5,6 @@
   "main": "app.js",
   "start": "node app.js",
   "dependencies": {
-    "debug": "^2.6.8",
     "colors": "*"
   },
   "author": "Jim Manton",
