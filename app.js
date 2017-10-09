@@ -1,7 +1,7 @@
 "use strict";
 
 /*
-* @author Jim Manton: jrman@risebroadband.com
+* @author Jim Manton: jrman@risebroadband.net
 * @since 2017-10-01
 */
 
