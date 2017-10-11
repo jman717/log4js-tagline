@@ -38,6 +38,9 @@ rte = new append().setConfig({"format": "rte(@route)"}).setInput('/');
 append = tagline.appender('line');
 lne = new append().setConfig({"format": "lne(@name(): @file:@line:@column)"});
 
+append = tagline.appender('error');
+err = new append().setConfig({"format": "msg(@error)"});
+
 append = tagline.appender('anyMsg');
 act = new append().setConfig({"format": "act(@action)", "replace": "@action"});
 
@@ -49,7 +52,15 @@ logger.level = 'debug';
 
 stw.setStart();
 logger.info('Hello World log').tag(rte).tag(lne).tagline();
+try{
+    logger.info('Hello World log').tag(rte).tag(lne).tagline();
+}catch(e){
+    logger.debug('error here').tag(err.setInput(e.message)).tag(stw.setStop()).tag(rte).tagline();
+}
 logger.debug('hello message').tag(act.setInput('some messages')).tag(stw.setStop()).tag(rte).tagline();
+
+
+log4js_tagline.setOptions({display: ["trace", "info", "warn", "error", "fatal", "mark"]});   //to display all tags except debug
 ```
 
 Example output

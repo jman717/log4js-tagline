@@ -15,7 +15,7 @@ class TagLine{
         var t = this;
         parent = t;
         t.log4js = log4js;
-        t.showLine = options.display;
+        t.setOptions(options);
         t.appenders_dir = './lib/appenders/';
         t.setup();
     }
@@ -36,8 +36,6 @@ class TagLine{
                     owner = this;
                     this.tagline = t.tagline;
                     this.tag = t.tag;
-                    //setTimeout(this.tagline, 2);
-                    //return original.apply(this, this.args);
                     return t;
                 };
             });
@@ -45,6 +43,11 @@ class TagLine{
         }catch(e){
             console.log('log4js-route.js error: ' + e.message);
         }
+    }
+
+    setOptions(jo){
+        var t = this;
+        t.showLine = (typeof jo.display == 'undefined') ? [] : jo.display;
     }
 
     getTrace(caller){
