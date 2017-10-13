@@ -1,6 +1,6 @@
 
 
-log4js-tagline is an extension of the node logging package log4js. Tags can be created and used independently or in combination with other tags.
+log4js-tagline is an extension of the node logging package log4js. Tags can be created and used independently or in combination with other tags. Tag are counted and the output can be turned on and off.
 Included tag appenders:
 
 * route - to display path or service name
@@ -9,6 +9,8 @@ Included tag appenders:
 * stopwatch - displays time elapsed for a particular tag.
 * counter - displays counts applied to a tag.
 * error - displays an error from a try/catch block applied to a tag.
+* display - ability to turn tags on or off
+* counter - count how many itterations a tag has been inputted to. Helpfull in turning tags on/off.
 
 Installation
 ---------
@@ -52,12 +54,19 @@ logger.level = 'debug';
 
 stw.setStart();
 logger.info('Hello World log').tag(rte).tag(lne).tagline();
+
 try{
     logger.info('Hello World log').tag(rte).tag(lne).tagline();
 }catch(e){
     logger.debug('error here').tag(err.setInput(e.message)).tag(stw.setStop()).tag(rte).tagline();
 }
 logger.debug('hello message').tag(act.setInput('some messages')).tag(stw.setStop()).tag(rte).tagline();
+
+if(act.getCount() > someNumber){
+		log4js_tagline.setOptions({display: ["trace", "debug", "info", "warn", "error", "fatal", "mark"]});  
+}else{
+		log4js_tagline.setOptions({display: ["error", "fatal"]});  //just display errors and fatal
+}
 
 
 log4js_tagline.setOptions({display: ["trace", "info", "warn", "error", "fatal", "mark"]});   //to display all tags except debug
