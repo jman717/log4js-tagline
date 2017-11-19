@@ -85,28 +85,39 @@ class TagLine{
     }
 
     tagline(){
+			try{
         var t = owner;
+
         var p = parent;
         if(p.showLine.indexOf(t.method) > -1)
             t.original.apply(t, t.args);
         else
             return t;
         return t;
+			}catch(e){
+					console.log('tagline error: ' + e.message.bold.red);
+			}
 
     }
 
     tag(o){
-        var t = owner;
-        try{
-            if(typeof o == 'undefined' || typeof o.aname == 'undefined')
-                return t;
-            if(typeof o != 'undefined' && o.aname == 'line.js')
-                o.setTrace(t.xtrace);
-            t.args.push(o.get_output());
-            return t;
-        }catch(e){
-            console.log('tag error: ' + e.message.bold.red);
-        }
+			var t = owner;
+			try{
+					if(typeof o == 'undefined' || typeof o.aname == 'undefined')
+							return t;
+					switch(o.aname){
+						case 'displayLine.js':
+							if(!o.getValue())
+								t.method = 'do_not_show';
+							break;
+						case 'line.js':
+							o.setTrace(t.xtrace);
+							break;
+					}
+					return t;
+			}catch(e){
+					console.log('tag error: ' + e.message.bold.yellow);
+			}
     }
 
     appender(name, config){

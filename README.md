@@ -52,6 +52,16 @@ stw = new append().setConfig({"format": "stopwatch(@stop - @start = @elapsed/mil
 const logger = log4js.getLogger('myLog');
 logger.level = 'debug';
 
+append = t.tagline.appender('boolean');
+isFalse = new append().setConfig({"format": "bool(@boolean)"}).setFalse();
+isTrue = new append().setConfig({"format": "bool(@boolean)"}).setTrue();
+append = t.tagline.appender('displayLine');
+display = new append().setConfig({"format": "display(@boolean)"});
+
+logger.debug('show this line').tag(display.show(isTrue.getValue())).tagline();
+logger.debug('hide this line').tag(display.show(isFalse.getValue())).tagline();
+
+
 stw.setStart();
 logger.info('Hello World log').tag(rte).tag(lne).tagline();
 
