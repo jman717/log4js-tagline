@@ -114,6 +114,7 @@ class TagLine{
 							o.setTrace(t.xtrace);
 							break;
 					}
+					t.args.push(o.get_output());
 					return t;
 			}catch(e){
 					console.log('tag error: ' + e.message.bold.yellow);
