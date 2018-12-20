@@ -11,11 +11,12 @@ Included tag appenders:
 * error - displays an error from a try/catch block applied to a tag.
 * display - ability to turn tags on or off
 * counter - count how many itterations a tag has been inputted to. Helpfull in turning tags on/off.
+* email - Appenders and cron settings allows flexible email delivery options
+
 
 Installation
 ---------
 ```
-npm install log4js
 npm install log4js-tagline
 ```
 
@@ -48,6 +49,113 @@ act = new append().setConfig({"format": "act(@action)", "replace": "@action"});
 
 append = tagline.appender('stopwatch');
 stw = new append().setConfig({"format": "stopwatch(@stop - @start = @elapsed/mili)"});
+
+append = t.tagline.appender('email')
+email = new append({smtp_config : {
+    host: "smtp host goes here",
+    port: "smtp port goes here",
+    auth: {
+      user: "user name here",
+      pass: "password goes here",
+      type: "SMTP",
+    },
+    secure: ""
+  },
+  emailThrottle : {
+    cronTime: "0,15,30,45 0-59 * * * *"   /* This is optional. Cron setting for how often you want emails to be sent. */
+  }
+}).init()
+
+var email_instant = email.appender({type: 'instant'})
+email_instant.add({
+  email_setup : {
+    "from": "some email address",
+    "to": "some email address",
+    "subject": "try me out",
+    "html": "<h2>This will appear in the email</h2>"
+  }
+})
+email_instant.add({
+  email_setup : {
+    "from": "some email address",
+    "to": "some email address",
+    "subject": "try me out",
+    "html": "<h2>This is another email</h2>"
+  }
+})
+
+var email_threshold = email.appender({
+  type: 'threshold',
+  threshold_number: 1000,
+  test_as: 'greater_than'
+})
+email_threshold.add({
+  email_setup : {
+    "from": "some email address",
+    "to": "some email address",
+    "subject": "try me out",
+    "html": "<h2>This will appear in the email</h2>"
+  }
+})
+
+var email_escallating = email.appender({
+  type: 'escallating'                         
+})
+email_escallating.add({cron_config : {
+    cronTime: "0 0-59 * * * *"
+  }
+})
+email_escallating.add({
+  email_setup : {
+    "from": "some email address",
+    "to": "some email address",
+    "subject": "try me out",
+    "html": "<h2>This is the first email that will appear</h2>"
+  }
+})
+email_escallating.add({
+  email_setup : {
+    "from": "some email address",
+    "to": "some email address",
+    "subject": "try me out",
+    "html": "<h2>This is the second email that will appear</h2>"
+  }
+})
+
+var email_bundle = t.email.appender({
+  type: 'bundle'                         
+})
+email_bundle.add({
+  email_setup : {
+    "from": "some email address",
+    "to": "some email address",
+    "subject": "try me out",
+    "html": "<h2>This is the first email that will appear</h2>"
+  }
+})
+email_bundle.add({
+  email_setup : {
+    "from": "some email address",
+    "to": "some email address",
+    "subject": "try me out",
+    "html": "<h2>This is the second email that will appear</h2>"
+  }
+})
+email_bundle.add({
+  bundle : {
+    "html": "<h4>Here is something we need to know</h4>"
+  }
+})
+email_bundle.add({
+  bundle : {
+    "html": "<h4>Something else</h4>"
+  }
+})
+email_bundle.add({
+  bundle : {
+    "html": "<h4>Cool</h4>"
+  }
+})
 
 const logger = log4js.getLogger('myLog');
 logger.level = 'debug';
@@ -90,4 +198,48 @@ Example output
 [2017-09-29 11:01:21.984] [INFO] myLog - hello info message rte(/hello_world)
 [2017-09-29 11:01:21.988] [ERROR] myLog - hello error message count(3) stopwatch(9/29/2017, 11:01:21 AM - 9/29/2017, 11:01:21 AM = 0.004/mili)
 [2017-09-29 11:01:21.988] [DEBUG] myLog - hello message act(some messages) stopwatch(9/29/2017, 11:01:21 AM - 9/29/2017, 11:01:21 AM = 0.008/mili) rte(/hello_world)
+```
+
+The following examples are various attempts to email:
+
+```javascript
+  email_bundle.attempt().on('success', function(){
+    email_bundle.then('stop').then('reset').then('clear_messages').add({
+      bundle : {
+        "html": "<h1>This is a new message</h1>"
+      }
+    }).attempt().on('error', function(obj){
+      console.log('error: ' + obj.message)
+    })
+  }).on('error', function(obj){
+    console.log('error: ' + obj.message)
+  })
+
+  email_instant.attempt().on('success', function(){
+    email_instant.then('stop').then('reset')
+  }).on('error', function(){
+    console.log('error: ' + obj.message)
+  })
+  
+  email_escallating.attempt().on('success', function(){
+    email_escallating.attempt().on('success', function(){
+      email_escallating.then('stop').then('reset').attempt().on('success', function(){
+        email_escallating.then('stop').then('reset')
+      }).on('error', function(){
+        console.log('error: ' + obj.message)
+      })
+    }).on('error', function(){
+      console.log('error: ' + obj.message)
+    })
+  }).on('error', function(){
+    console.log('error: ' + obj.message)
+  })
+
+  email_threshold.attempt({submit: 1001}).on('success', function(obj){
+    console.log('threshold debug 10.00')
+  }).on('error', function(){
+    console.log('error: ' + obj.message)
+  })
+  
+....
 ```
