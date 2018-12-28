@@ -1,12 +1,13 @@
 {
   "name": "log4js-tagline",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "log4js + tagline",
   "main": "app.js",
   "start": "node app.js",
   "dependencies": {
     "colors": "*",
-    "log4js": "^3.0.6"
+    "log4js": "^3.0.6",
+    "email-smtp-cron-delivery": "0.0.2"
   },
   "author": "Jim Manton",
   "email": "jrman@risebroadband.net",
