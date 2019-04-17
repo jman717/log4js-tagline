@@ -1,6 +1,6 @@
 {
   "_from": "log4js-tagline",
-  "_id": "log4js-tagline@1.6.4",
+  "_id": "log4js-tagline@2.0.0",
   "_inBundle": false,
   "_integrity": "sha512-hBdHoL8qLKlK0bxw+BnD5F3XFJgRMyog6tq/BRJ34OIDhIBxY5KrHw21dRVdW1P232j1zf/zlHci9w3XkzATQQ==",
   "_location": "/log4js-tagline",
@@ -42,5 +42,5 @@
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "<<<<<"
+  "version": "2.0.0"
 }
