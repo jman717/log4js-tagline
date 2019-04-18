@@ -29,11 +29,16 @@
   },
   "bundleDependencies": false,
   "dependencies": {
+    "chai": "^4.2.0",
     "colors": "*",
     "email-smtp-cron-delivery": "0.0.2",
-    "node-dogstatsd": "0.0.7",
+    "log4js": "^2.6.0",
     "mocha": "^5.2.0",
-    "log4js": "^2.6.0"
+    "node-dogstatsd": "0.0.7"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha"
   },
   "deprecated": false,
   "description": "log4js + tagline",
