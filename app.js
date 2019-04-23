@@ -104,7 +104,9 @@ class TagLine {
             Error.prepareStackTrace = original
             return stack
         } catch (e) {
-            console.log('line.js error: ' + e.message)
+            e.message = "log4js-tagline app.js getTrace error: " + e.message
+            console.log(e.message)
+            throw (e)
         }
     }
 
