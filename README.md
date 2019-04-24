@@ -1,6 +1,6 @@
 
 
-log4js-tagline is an extension of the node logging package log4js. Tags can be created and used independently or in combination with other tags; the output can be directed to both a local file, datadog, combinations of both on the fly or none. Tag itterations are counted.
+log4js-tagline is an extension of the node logging package log4js. Tags can be created and used independently or in combination with other tags; the output can be directed to both a local file, datadog, combinations of both on the fly or none. Each tag itterations is counted.
 
 Included tag appenders:
 
@@ -78,7 +78,7 @@ try {
     logger.debug('this is an debug line2').tag(display.show(isFalse.getValue())).tag(increment).tagline()
     logger.debug('this is an debug line3').tag(display.show(isTrue.getValue())).tag(increment).tagline()
 } catch (e) {
-    console.log('jrm debug here(' + e.message + ')')
+    console.log('error message here(' + e.message + ')')
 }
 
 append = tagline.appender('email')

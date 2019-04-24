@@ -52,16 +52,16 @@ class TagLine {
     setup() {
         var t = this
         try {
-            var logger = t.log4js.getLogger();
-            ["trace", "debug", "info", "warn", "error", "fatal", "mark"].forEach(function (method) {
-                //["warn", "error", "fatal"].forEach(function (method) {
+            var logger = t.log4js.getLogger()
+            var arr = ["trace", "debug", "info", "warn", "error", "fatal", "mark"]
+            arr.forEach(function (method) {
                 var original = logger.constructor.prototype[method]
-                logger.constructor.prototype[method] = function log() {
+                logger.constructor.prototype[method] = function log(msg) {
                     this.original = original
                     this.method = method
-                    this.args = [].slice.call(arguments)
                     this.log = log
                     this.xtrace = t.getTrace(log)
+                    this.args = ['(msg: ' + msg + ')']
                     setup_owner = this
                     this.tagline = t.tagline
                     this.tag = t.tag
@@ -134,8 +134,9 @@ class TagLine {
             var t = setup_owner
 
             var p = parent
-            if (p.showLine.indexOf(t.method) > -1)
-                t.original.apply(t, t.args)
+            if (p.showLine.indexOf(t.method) > -1) {
+                t._log(t.method, t.args)
+            }
             return t
         } catch (e) {
             e.message = "log4js-tagline app.js tagline error: " + e.message
@@ -150,8 +151,8 @@ class TagLine {
         try {
             if (typeof o == undefined || typeof o.aname == undefined)
                 return t
-            if (typeof o.get_output == 'function' && typeof o.tf != undefined) {
-                if (o.get_output() == 'display()' && !o.tf) {
+            if (typeof o.get_output == 'function' && typeof o.tf != 'undefined') {
+                if (!o.tf) {
                     t.method = 'do_not_show'
                     return t
                 }
