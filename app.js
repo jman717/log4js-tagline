@@ -135,6 +135,7 @@ class TagLine {
 
             var p = parent
             if (p.showLine.indexOf(t.method) > -1) {
+                /* new call to support log4js 4.1.0 */
                 t._log(t.method, t.args)
             }
             return t
