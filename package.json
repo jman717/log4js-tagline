@@ -1,6 +1,6 @@
 {
   "_from": "log4js-tagline",
-  "_id": "log4js-tagline@2.1.0",
+  "_id": "log4js-tagline@2.1.1",
   "_inBundle": false,
   "_integrity": "sha512-hBdHoL8qLKlK0bxw+BnD5F3XFJgRMyog6tq/BRJ34OIDhIBxY5KrHw21dRVdW1P232j1zf/zlHci9w3XkzATQQ==",
   "_location": "/log4js-tagline",
@@ -41,6 +41,14 @@
     "start": "node app.js",
     "test": "mocha"
   },
+  "keywords": [
+    "logging",
+    "log",
+    "log4js",
+    "appenders",
+    "node",
+    "datadog"
+  ],
   "deprecated": false,
   "description": "log4js + tagline",
   "email": "jrman@risebroadband.net",
@@ -48,5 +56,5 @@
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "2.1.0"
+  "version": "2.1.1"
 }
