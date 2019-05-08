@@ -4,7 +4,7 @@ const assert = require('assert'),
 
 const packageMock = {
   "_from": "log4js-tagline",
-  "_id": "log4js-tagline@2.1.1",
+  "_id": "log4js-tagline@2.1.2",
   "_inBundle": false,
   "_integrity": "sha512-hBdHoL8qLKlK0bxw+BnD5F3XFJgRMyog6tq/BRJ34OIDhIBxY5KrHw21dRVdW1P232j1zf/zlHci9w3XkzATQQ==",
   "_location": "/log4js-tagline",
@@ -37,7 +37,7 @@ const packageMock = {
     "colors": "*",
     "compare-json-difference": "^0.1.3",
     "email-smtp-cron-delivery": "0.0.2",
-    "log4js": "^4.1.0",
+    "log4js": "^4.1.1",
     "mocha": "^5.2.0",
     "node-dogstatsd": "0.0.7"
   },
@@ -60,7 +60,7 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "2.1.1"
+  "version": "2.1.2"
 }
 
 describe('package.json', function () {
