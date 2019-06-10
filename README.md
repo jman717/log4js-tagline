@@ -22,6 +22,18 @@ Installation
 npm install log4js-tagline
 ```
 
+Mocha Test
+---------
+```
+npm test
+```
+
+General Setup Test
+---------
+```
+node test
+```
+
 Usage
 ---------
 ```js

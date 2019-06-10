@@ -1,6 +1,6 @@
 {
   "_from": "log4js-tagline",
-  "_id": "log4js-tagline@2.1.6",
+  "_id": "log4js-tagline@2.1.7",
   "_inBundle": false,
   "_integrity": "sha512-hBdHoL8qLKlK0bxw+BnD5F3XFJgRMyog6tq/BRJ34OIDhIBxY5KrHw21dRVdW1P232j1zf/zlHci9w3XkzATQQ==",
   "_location": "/log4js-tagline",
@@ -20,7 +20,7 @@
     "/",
     "/email-smtp-cron-delivery"
   ],
-  "_resolved": "https://registry.npmjs.org/log4js-tagline/-/log4js-tagline-2.1.6.tgz",
+  "_resolved": "https://registry.npmjs.org/log4js-tagline/-/log4js-tagline-2.1.7.tgz",
   "_shasum": "4ec25a7774ff9d76ab8d42ebed713ee7f2ec610a",
   "_spec": "log4js-tagline",
   "_where": "C:\\Users\\jmanton\\node\\managed giving\\processachacknowledgment",
@@ -56,5 +56,5 @@
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "2.1.6"
+  "version": "2.1.7"
 }
