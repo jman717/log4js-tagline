@@ -1,0 +1,8 @@
+[2019-06-10T16:11:11.859] [debug] myLog - (msg: show this line) bool()
+[2019-06-10T16:11:11.868] [info] myLog - (msg: this is an info line) lne(<anonymous>(): log4js-tagline/test.js:49:12)
+[2019-06-10T16:11:11.868] [debug] myLog - (msg: this is an debug line)
+[2019-06-10T16:11:11.868] [debug] myLog - (msg: this is an debug line3) bool()
+[2019-06-10T16:11:12.100] [debug] myLog - (msg: show this line) display(@boolean)
+[2019-06-10T16:11:12.105] [info] myLog - (msg: Hello World log) rte(/test) lne(<anonymous>(): log4js-tagline/test.js:288:8)
+[2019-06-10T16:11:12.105] [error] myLog - (msg: error here) msg(This is an error) stopwatch(6/10/2019, 4:11:12 PM - 6/10/2019, 4:11:12 PM = 0/mili) rte(/test)
+[2019-06-10T16:11:12.105] [debug] myLog - (msg: hello from stopwatch) msg(some messages) stopwatch(6/10/2019, 4:11:12 PM - 6/10/2019, 4:11:12 PM = 0/mili) rte(/test)

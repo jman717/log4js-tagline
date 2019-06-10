@@ -26,7 +26,7 @@ Usage
 ---------
 ```js
 var log4js = require("log4js"),
-var log4js_tagline = require("log4js-tagline");
+    log4js_tagline = require("log4js-tagline")
 
 log4js.configure({
     appenders: { myLog: { type: 'file', filename: 'my.log' } },
@@ -47,13 +47,14 @@ logger.level = 'debug'
 append = tagline.appender('boolean')
 isFalse = new append(tagline).setConfig({ "format": "bool(@boolean)" }).setFalse()
 isTrue = new append(tagline).setConfig({ "format": "bool(@boolean)" }).setTrue()
-display = new append(tagline).setConfig({ "format": "display(@boolean)" })
+display = new append(tagline).setConfig({ "format": "bool(@boolean)" }).setTrue()
 
+console.log('show=' + typeof display.show)
 logger.debug('show this line').tag(display.show(isTrue.getValue())).tagline()
 logger.debug('do not show this line').tag(display.show(isFalse.getValue())).tagline()
 
 append = tagline.appender('route')
-rte = new append(tagline).setConfig({ "format": "rte(@route)" }).setInput('/');
+rte = new append(tagline).setConfig({ "format": "rte(@route)" }).setInput('/test') 
 
 append = tagline.appender('line')
 lne = new append(tagline).setConfig({ "format": "lne(@name(): @file:@line:@column)" })
@@ -153,7 +154,7 @@ email_escallating.add({
   }
 })
 
-var email_bundle = t.email.appender({
+var email_bundle = email.appender({
   type: 'bundle'                         
 })
 email_bundle.add({
@@ -188,7 +189,7 @@ email_bundle.add({
   }
 })
 
-append = t.tagline.appender('email')
+append = tagline.appender('email')
 email = new append({smtp_config : {
     host: "smtp host goes here",
     port: "smtp port goes here",
@@ -260,7 +261,7 @@ email_escallating.add({
   }
 })
 
-var email_bundle = t.email.appender({
+var email_bundle = email.appender({
   type: 'bundle'                         
 })
 email_bundle.add({
@@ -295,47 +296,54 @@ email_bundle.add({
   }
 })
 
-const logger = log4js.getLogger('myLog');
-logger.level = 'debug';
+append = tagline.appender('boolean') 
+isFalse = new append(tagline).setConfig({"format": "bool(@boolean)"}).setFalse() 
+isTrue = new append(tagline).setConfig({"format": "bool(@boolean)"}).setTrue() 
+append = tagline.appender('displayLine') 
+display = new append(tagline).setConfig({"format": "display(@boolean)"}) 
 
-append = tagline.appender('boolean');
-isFalse = new append(tagline).setConfig({"format": "bool(@boolean)"}).setFalse();
-isTrue = new append(tagline).setConfig({"format": "bool(@boolean)"}).setTrue();
-append = tagline.appender('displayLine');
-display = new append(tagline).setConfig({"format": "display(@boolean)"});
+logger.debug('show this line').tag(display.show(isTrue.getValue())).tagline() 
+logger.debug('hide this line').tag(display.show(isFalse.getValue())).tagline() 
 
-logger.debug('show this line').tag(display.show(isTrue.getValue())).tagline();
-logger.debug('hide this line').tag(display.show(isFalse.getValue())).tagline();
-
-
-stw.setStart();
-logger.info('Hello World log').tag(rte).tag(lne).tagline();
+append = tagline.appender('anyMsg')
+err = new append(tagline)
+append = tagline.appender('anyMsg')
+act = new append(tagline)
+append = tagline.appender('stopwatch')
+stw = new append(tagline)
+stw.setStart()
+logger.info('Hello World log').tag(rte).tag(lne).tagline() 
 
 try{
-    logger.info('Hello World log').tag(rte).tag(lne).tagline();
+    throw new Error('This is an error')
 }catch(e){
-    logger.debug('error here').tag(err.setInput(e.message)).tag(stw.setStop()).tag(rte).tagline();
+    logger.error('error here').tag(err.setInput(e.message)).tag(stw.setStop()).tag(rte).tagline() 
 }
-logger.debug('hello message').tag(act.setInput('some messages')).tag(stw.setStop()).tag(rte).tagline();
+logger.debug('hello from stopwatch').tag(act.setInput('some messages')).tag(stw.setStop()).tag(rte).tagline() 
 
+someNumber = 1000
 if(act.getCount() > someNumber){
-		log4js_tagline.setOptions({display: ["trace", "debug", "info", "warn", "error", "fatal", "mark"]});  
+		tagline.setOptions({display: ["trace", "debug", "info", "warn", "error", "fatal", "mark"]})   
 }else{
-		log4js_tagline.setOptions({display: ["error", "fatal"]});  //just display errors and fatal
+		tagline.setOptions({display: ["error", "fatal"]})   //just display errors and fatal
 }
 
+tagline.setOptions({display: ["trace", "info", "warn", "error", "fatal", "mark"]})    //to display all tags except debug
 
-log4js_tagline.setOptions({display: ["trace", "info", "warn", "error", "fatal", "mark"]});   //to display all tags except debug
+console.log('done with test')
 ```
 
-Example output
+Example log file output
 ---------
 ```
-[2017-09-22 13:40:56.734] [INFO] myLog - route rte(/post/query/countSample) qry(countOLT) lne(processAction(): helper/server.js:110:14)
-[2017-09-22 13:40:56.737] [DEBUG] myLog - OLTs body({"query":"countOLT","ip":"10.231.99.99"} lne(countOLTs(): queries/countOLT.js:9:12)
-[2017-09-29 11:01:21.984] [INFO] myLog - hello info message rte(/hello_world)
-[2017-09-29 11:01:21.988] [ERROR] myLog - hello error message count(3) stopwatch(9/29/2017, 11:01:21 AM - 9/29/2017, 11:01:21 AM = 0.004/mili)
-[2017-09-29 11:01:21.988] [DEBUG] myLog - hello message act(some messages) stopwatch(9/29/2017, 11:01:21 AM - 9/29/2017, 11:01:21 AM = 0.008/mili) rte(/hello_world)
+[2019-06-10T16:07:45.985] [debug] myLog - (msg: show this line) bool()
+[2019-06-10T16:07:46.338] [info] myLog - (msg: this is an info line) lne(<anonymous>(): log4js-tagline/test.js:49:12)
+[2019-06-10T16:07:46.339] [debug] myLog - (msg: this is an debug line)
+[2019-06-10T16:07:46.341] [debug] myLog - (msg: this is an debug line3) bool()
+[2019-06-10T16:07:46.725] [debug] myLog - (msg: show this line) display(@boolean)
+[2019-06-10T16:07:46.746] [info] myLog - (msg: Hello World log) rte(/test) lne(<anonymous>(): log4js-tagline/test.js:289:8)
+[2019-06-10T16:07:46.750] [error] myLog - (msg: error here) msg(This is an error) stopwatch(6/10/2019, 4:07:46 PM - 6/10/2019, 4:07:46 PM = 0.004/mili) rte(/test)
+[2019-06-10T16:07:46.754] [debug] myLog - (msg: hello from stopwatch) msg(some messages) stopwatch(6/10/2019, 4:07:46 PM - 6/10/2019, 4:07:46 PM = 0.008/mili) rte(/test)
 ```
 
 The following examples are various attempts to email:

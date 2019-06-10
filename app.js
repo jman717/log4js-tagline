@@ -77,12 +77,12 @@ class TagLine {
     setOptions({ display, output }) {
         var t = this
         try {
-            t.showLine = (typeof display == undefined) ? [] : display
-            if (typeof output == undefined)
-                throw new Error('output is undefined')
-            if (typeof output.to_local_file == undefined)
+            t.showLine = (typeof display == "undefined") ? [] : display
+            if (typeof output == "undefined")
+                return
+            if (typeof output.to_local_file == "undefined")
                 throw new Error('output.to_local_file is undefined')
-            if (typeof output.to_datadog == undefined)
+            if (typeof output.to_datadog == "undefined")
                 throw new Error('output.to_datadog is undefined')
             t.to_local_file = output.to_local_file
             t.to_datadog = output.to_datadog
