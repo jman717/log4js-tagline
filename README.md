@@ -9,7 +9,7 @@ Included tag appenders:
 * action - displays action name
 * stopwatch - displays time elapsed for a particular tag.
 * counter - displays counts applied to a tag.
-* error - displays an error from a try/catch block applied to a tag.
+* error - displays an error message from the try/catch block along with the class/function if available from the stack, or simply display an error message.
 * display - ability to turn tags on or off
 * counter - count how many itterations a tag has been inputted to. Helpfull in turning tags on/off.
 * datadog - for metrics including increment, incrementBy, gauge, histogram, and set.
@@ -326,11 +326,19 @@ stw = new append(tagline)
 stw.setStart()
 logger.info('Hello World log').tag(rte).tag(lne).tagline() 
 
-try{
-    throw new Error('This is an error')
-}catch(e){
-    logger.error('error here').tag(err.setInput(e.message)).tag(stw.setStop()).tag(rte).tagline() 
+class testClass {
+  call_a_function() {
+    try {
+      throw new Error('This is some sort of an error')
+    } catch (e) {
+      logger.error('error here').tag(err.setError(e)).tag(stw.setStop()).tag(rte).tagline()
+    }
+  }
 }
+var testThisClass = new testClass()
+testThisClass.call_a_function()
+logger.error('error this').tag(err.setInput("A free form error message.")).tag(rte).tagline()
+
 logger.debug('hello from stopwatch').tag(act.setInput('some messages')).tag(stw.setStop()).tag(rte).tagline() 
 
 someNumber = 1000
