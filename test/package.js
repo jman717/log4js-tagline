@@ -28,6 +28,11 @@ const packageMock = {
     "node",
     "datadog"
   ],
+  "homepage": "https://github.com/jman717/log4js-tagline",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jman717/log4js-tagline.git"
+  },
   "deprecated": false,
   "description": "log4js + tagline",
   "email": "jrman@risebroadband.net",
@@ -35,7 +40,7 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "2.1.13"
+  "version": "2.1.14"
 }
 
 describe('package.json', function () {
