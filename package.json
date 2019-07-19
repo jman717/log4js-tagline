@@ -24,7 +24,7 @@
     "node",
     "email",
     "cron",
-    "mocha"
+    "mocha",
     "datadog"
   ],
   "homepage": "https://github.com/jman717/log4js-tagline",

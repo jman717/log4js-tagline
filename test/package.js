@@ -13,7 +13,7 @@ const packageMock = {
     "compare-json-difference": "^0.1.3",
     "email-smtp-cron-delivery": "0.0.12",
     "log4js": "^4.5.1",
-    "mocha": "^6.1.4",
+    "mocha": "^6.2.0",
     "node-dogstatsd": "0.0.7"
   },
   "scripts": {
@@ -26,6 +26,9 @@ const packageMock = {
     "log4js",
     "appenders",
     "node",
+    "email",
+    "cron",
+    "mocha",
     "datadog"
   ],
   "homepage": "https://github.com/jman717/log4js-tagline",
@@ -40,7 +43,7 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "2.1.14"
+  "version": "2.1.15"
 }
 
 describe('package.json', function () {
