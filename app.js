@@ -80,10 +80,13 @@ class TagLine {
             t.showLine = (typeof display == "undefined") ? [] : display
             if (typeof output == "undefined")
                 return
+            if (typeof output.to_console == "undefined")
+                throw new Error('output.to_console is undefined')
             if (typeof output.to_local_file == "undefined")
                 throw new Error('output.to_local_file is undefined')
             if (typeof output.to_datadog == "undefined")
                 throw new Error('output.to_datadog is undefined')
+            t.to_console = output.to_console
             t.to_local_file = output.to_local_file
             t.to_datadog = output.to_datadog
         } catch (e) {
@@ -131,9 +134,11 @@ class TagLine {
 
     tagline() {
         try {
-            var t = setup_owner
+            var t = setup_owner, color
 
             var p = parent
+            if (owner.to_console.show) 
+                console.log(JSON.stringify(t.args)[owner.to_console.color])               
             if (p.showLine.indexOf(t.method) > -1) {
                 t._log(t.method, t.args)
             }

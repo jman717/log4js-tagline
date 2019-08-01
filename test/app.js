@@ -30,8 +30,8 @@ describe('app', function () {
         beforeEach(function () {
             application = require('../app.js')
             log4js = { "getLogger": function () { } }
-            display = { "display": {}, "output": { "to_local_file": true, "to_datadog": true } }
-            output = { "to_local_file": "true", "to_datadog": "true" }
+            display = { "display": {}, "output": { "to_local_file": true, "to_datadog": true, "to_console": true } }
+            output = { "to_local_file": "true", "to_datadog": "true", "to_console": true }
             datadog = { "datadog": { "StatsD_Ip": "123456789" } }
             caller = {}
         })
