@@ -137,8 +137,41 @@ class TagLine {
             var t = setup_owner, color
 
             var p = parent
-            if (owner.to_console.show) 
-                console.log(JSON.stringify(t.args)[owner.to_console.color])               
+            if (owner.to_console.show) {
+                switch (t.method) {
+                    case "trace":
+                        color = (typeof owner.to_console.color.trace == 'string') ? owner.to_console.color.trace : "blue"
+                        break
+                    case "debug":
+                        color = (typeof owner.to_console.color.debug == 'string') ? owner.to_console.color.debug : "maginta"
+                        break
+                    case "info":
+                        color = (typeof owner.to_console.color.info == 'string') ? owner.to_console.color.info : "gray"
+                        break
+                    case "warn":
+                        color = (typeof owner.to_console.color.warn == 'string') ? owner.to_console.color.warn : "yellow"
+                        break
+                    case "warn":
+                        color = (typeof owner.to_console.color.warn == 'string') ? owner.to_console.color.warn : "yellow"
+                        break
+                    case "error":
+                        color = (typeof owner.to_console.color.error == 'string') ? owner.to_console.color.error : "red"
+                        break
+                    case "warn":
+                        color = (typeof owner.to_console.color.warn == 'string') ? owner.to_console.color.warn : "yellow"
+                        break
+                    case "fatal":
+                        color = (typeof owner.to_console.color.fatal == 'string') ? owner.to_console.color.fatal : "red"
+                        break
+                    case "mark":
+                        color = (typeof owner.to_console.color.mark == 'string') ? owner.to_console.color.mark : "white"
+                        break
+                    default:
+                        color = "gray"
+                        break
+                }
+                console.log(JSON.stringify(t.args)[color])
+            }
             if (p.showLine.indexOf(t.method) > -1) {
                 t._log(t.method, t.args)
             }
