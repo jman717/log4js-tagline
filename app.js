@@ -21,6 +21,7 @@ class TagLine {
             t.log4js = log4js
             t.datadog
             t.dogstatsd
+            t.to_console = true
             t.to_local_file = true
             t.to_datadog = true
             t.setOptions({ display, output })

@@ -11,7 +11,7 @@ const packageMock = {
     "chai": "^4.2.0",
     "colors": "*",
     "compare-json-difference": "^0.1.3",
-    "email-smtp-cron-delivery": "0.0.13",
+    "email-smtp-cron-delivery": "0.0.14",
     "log4js": "^4.5.1",
     "mocha": "^6.2.0",
     "node-dogstatsd": "0.0.7"
@@ -43,7 +43,7 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "2.2.1"
+  "version": "2.2.2"
 }
 
 describe('package.json', function () {
