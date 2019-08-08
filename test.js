@@ -11,7 +11,7 @@ tagline = new log4js_tagline(log4js, {
   "output": {
     "to_console": { "show": true, "color": {"trace": "blue", 
                                             "debug": "magenta", 
-                                            "info": "gray", 
+                                            "info": "bgBlue", 
                                             "warn": "yellow", 
                                             "error": "red", 
                                             "fatal": "red", 
@@ -291,6 +291,10 @@ logger.debug('hide this line').tag(display.show(isFalse.getValue())).tagline()
 
 append = tagline.appender('error')
 err = new append(tagline)
+
+append = tagline.appender('class_function')
+cfu = new append(tagline)
+
 append = tagline.appender('anyMsg')
 act = new append(tagline)
 append = tagline.appender('stopwatch')
@@ -301,6 +305,7 @@ logger.info('Hello World log').tag(rte).tag(lne).tagline()
 class testClass {
   call_a_function() {
     try {
+      logger.info('class/function name can be found here').tag(cfu).tag(lne).tagline()
       throw new Error('This is some sort of an error')
     } catch (e) {
       logger.error('error here').tag(err.setError(e)).tag(stw.setStop()).tag(rte).tagline()
@@ -328,12 +333,14 @@ setTimeout(data => {
 }, 1500)
 
 /* Expected output in my.log
-[2019-06-10T16:07:45.985] [debug] myLog - (msg: show this line) bool()
-[2019-06-10T16:07:46.338] [info] myLog - (msg: this is an info line) lne(<anonymous>(): log4js-tagline/test.js:49:12)
-[2019-06-10T16:07:46.339] [debug] myLog - (msg: this is an debug line)
-[2019-06-10T16:07:46.341] [debug] myLog - (msg: this is an debug line3) bool()
-[2019-06-10T16:07:46.725] [debug] myLog - (msg: show this line) display(@boolean)
-[2019-06-10T16:07:46.746] [info] myLog - (msg: Hello World log) rte(/test) lne(<anonymous>(): log4js-tagline/test.js:289:8)
-[2019-06-10T16:07:46.750] [error] myLog - (msg: error here) msg(This is an error) stopwatch(6/10/2019, 4:07:46 PM - 6/10/2019, 4:07:46 PM = 0.004/mili) rte(/test)
-[2019-06-10T16:07:46.754] [debug] myLog - (msg: hello from stopwatch) msg(some messages) stopwatch(6/10/2019, 4:07:46 PM - 6/10/2019, 4:07:46 PM = 0.008/mili) rte(/test)
+[2019-08-08T14:01:58.402] [debug] myLog - (msg: show this line) bool()
+[2019-08-08T14:01:58.434] [info] myLog - (msg: this is an info line) lne(<anonymous>(): log4js-tagline/test.js:56:10)
+[2019-08-08T14:01:58.435] [debug] myLog - (msg: this is an debug line)
+[2019-08-08T14:01:58.440] [debug] myLog - (msg: this is an debug line3) bool()
+[2019-08-08T14:01:58.988] [debug] myLog - (msg: show this line) display(@boolean)
+[2019-08-08T14:01:59.091] [info] myLog - (msg: Hello World log) rte(/test) lne(<anonymous>(): log4js-tagline/test.js:303:8)
+[2019-08-08T14:01:59.147] [info] myLog - (msg: class/function name can be found here) class/function name(testClass.call_a_function) lne(call_a_function(): log4js-tagline/test.js:308:14)
+[2019-08-08T14:01:59.169] [error] myLog - (msg: error here) error(testClass.call_a_function: This is some sort of an error) stopwatch(8/8/2019, 2:01:59 PM - 8/8/2019, 2:01:59 PM = 0.097/mili) rte(/test)
+[2019-08-08T14:01:59.197] [error] myLog - (msg: error this) error(msg: A free form error message.) rte(/test)
+[2019-08-08T14:01:59.220] [debug] myLog - (msg: hello from stopwatch) msg(some messages) stopwatch(8/8/2019, 2:01:59 PM - 8/8/2019, 2:01:59 PM = 0.146/mili) rte(/test)
 */
