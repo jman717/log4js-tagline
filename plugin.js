@@ -1,1 +1,3 @@
-var xxx = 'jrm debug 10.00';
+function doPlugin(){
+  alert('jrm debug doPlugin');
+}
