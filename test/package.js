@@ -9,12 +9,12 @@ const packageMock = {
   "bundleDependencies": false,
   "dependencies": {
     "@nearform/sql": "^1.3.1",
-    "chai": "^4.2.0",
+    "chai": "^4.3.3",
     "colors": "^1.4.0",
     "compare-json-difference": "^0.1.3",
     "email-smtp-cron-delivery": "^0.0.17",
     "log4js": "^6.3.0",
-    "mocha": "^8.2.0",
+    "mocha": "^8.3.1",
     "node-dogstatsd": "0.0.7"
   },
   "scripts": {
@@ -44,7 +44,7 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "2.3.6"
+  "version": "2.3.8"
 }
 
 describe('package.json', function () {
