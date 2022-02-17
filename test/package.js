@@ -8,13 +8,13 @@ const packageMock = {
   },
   "bundleDependencies": false,
   "dependencies": {
-    "@nearform/sql": "^1.3.1",
-    "chai": "^4.3.4",
+    "@nearform/sql": "^1.9.0",
+    "chai": "^4.3.6",
     "colors": "^1.4.0",
     "compare-json-difference": "^0.1.3",
-    "email-smtp-cron-delivery": "^0.0.17",
-    "log4js": "^6.3.0",
-    "mocha": "^9.1.3",
+    "email-smtp-cron-delivery": "^0.0.18",
+    "log4js": "^6.4.1",
+    "mocha": "^9.2.0",
     "node-dogstatsd": "0.0.7"
   },
   "scripts": {
@@ -44,7 +44,7 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "2.3.10"
+  "version": "2.3.11"
 }
 
 
