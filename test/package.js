@@ -13,7 +13,7 @@ const packageMock = {
     "colors": "^1.4.0",
     "compare-json-difference": "^0.1.3",
     "email-smtp-cron-delivery": "^0.0.18",
-    "log4js": "^6.4.1",
+    "log4js": "^6.4.7",
     "mocha": "^9.2.0",
     "node-dogstatsd": "0.0.7"
   },
@@ -44,7 +44,7 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "2.3.11"
+  "version": "2.3.12"
 }
 
 
