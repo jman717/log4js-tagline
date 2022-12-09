@@ -1,25 +1,27 @@
 const assert = require('assert'),
-    jsonHasDifferences = require('compare-json-difference'),
+    jsonHasDifferences = require('diffler'),
     packagejson = require('../package.json')
 
 const packageMock = {
   "author": {
     "name": "Jim Manton"
   },
-  "bundleDependencies": false,
+  "bundleDependencies": [],
   "dependencies": {
-    "@nearform/sql": "^1.9.0",
+    "@nearform/sql": "^1.10.0",
     "chai": "^4.3.7",
     "colors": "^1.4.0",
-    "compare-json-difference": "^0.1.3",
-    "email-smtp-cron-delivery": "^0.0.18",
+    "ditched": "^2.2.0",
+    "email-smtp-cron-delivery": "^0.0.19",
     "log4js": "^6.7.1",
     "mocha": "^10.1.0",
-    "node-dogstatsd": "0.0.7"
+    "node-dogstatsd": "0.0.7",
+    "diffler": "^2.0.4"
   },
   "scripts": {
     "start": "node app.js",
-    "test": "mocha"
+    "test": "mocha",
+    "ditched": "ditched -a"
   },
   "keywords": [
     "logging",
@@ -44,17 +46,18 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "2.3.13"
+  "version": "2.3.14"
 }
 
-
 describe('package.json', function () {
-    it('should pass', function () {
-        assert(!jsonHasDifferences(packagejson, packageMock, true))
-    })
+  it('should pass', function () {
+    const difference = jsonHasDifferences(packagejson, packageMock)
+    assert(JSON.stringify(difference) == "{}")
+  })
 
-    it('should fail', function () {
-        packageMock.version = '0'
-        assert(jsonHasDifferences(packagejson, packageMock, true))
-    })
+  it('should fail', function () {
+      packageMock.version = '0'
+      assert(jsonHasDifferences(packagejson, packageMock))
+  })
 })
+
