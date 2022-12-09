@@ -167,6 +167,8 @@ class TagLine {
                     case "mark":
                         color = (typeof owner.to_console.color.mark == 'string') ? owner.to_console.color.mark : "white"
                         break
+                    case "do_not_show":
+                        return
                     default:
                         color = "gray"
                         break
