@@ -25,7 +25,7 @@ describe('app', function () {
         })
     })
 
-    describe('constructor', function () {
+    describe('getTrace', function () {
         var app, application, log4js, display, output, datadog, caller
         beforeEach(function () {
             application = require('../app.js')
