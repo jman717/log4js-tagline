@@ -11,23 +11,27 @@ const packageMock = {
     "@nearform/sql": "^1.10.0",
     "chai": "^4.3.7",
     "colors": "^1.4.0",
+    "diffler": "^2.0.4",
     "ditched": "^2.2.0",
     "email-smtp-cron-delivery": "^0.0.19",
     "log4js": "^6.7.1",
     "mocha": "^10.1.0",
     "node-dogstatsd": "0.0.7",
-    "diffler": "^2.0.4"
+    "queuejson": "^7.0.9"
   },
   "scripts": {
     "start": "node app.js",
     "test": "mocha",
-    "ditched": "ditched -a"
+    "ditched": "ditched -a",
+    "test_basic": "node ./tests/basic",
+    "test_qObjAll": "node ./tests/qObjAll"
   },
   "keywords": [
     "logging",
     "log",
     "log4js",
     "appenders",
+    "queueObj",
     "node",
     "email",
     "cron",
@@ -46,7 +50,7 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "2.3.16"
+  "version": "3.0.0"
 }
 
 describe('package.json', function () {

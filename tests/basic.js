@@ -1,5 +1,5 @@
 var log4js = require("log4js"),
-  log4js_tagline = require("./app.js")
+  log4js_tagline = require("../app.js")
 
 log4js.configure({
   appenders: { myLog: { type: 'file', filename: 'my.log' } },

@@ -14,6 +14,7 @@ Included tag appenders:
 * counter - count how many itterations a tag has been inputted to. Helpfull in turning tags on/off.
 * datadog - for metrics including increment, incrementBy, gauge, histogram, and set.
 * email - Appenders and cron settings allows flexible email delivery options
+* queueObj - Support for dynamic objects with all the tagline appenders 
 
 
 Installation
@@ -31,7 +32,8 @@ npm test
 General Setup Test
 ---------
 ```
-node test
+npm run test_basic
+npm run test_qObjAll
 ```
 
 Usage
