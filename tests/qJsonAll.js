@@ -53,11 +53,11 @@ class class_test_all {
       let t = this, str
       if (t.id == 3) {
         str = `this id(${t.id}) has some problem`
-        t.clog(str, { "type": "error" })
+        t.clog(str, { "type": "error", "obj_name": "class_test_all" })
         callback({ error: { msg: str } })
       } else {
         str = `processing id(${t.id})`
-        t.clog(str, { "type": "success" })
+        t.clog(str, { "type": "success", "obj_name": "class_test_all" })
         callback({ success: { msg: `id = ${t.id}` } })
       }
     } catch (e) {
@@ -77,19 +77,22 @@ qJson.logMsg = (msg, props = {}) => {
   let t = this
   try {
     let t = this, tp
-    if (typeof props != 'undefined' && typeof props.type != 'undefined') {
+    if (typeof props != 'undefined' &&
+      typeof props.type != 'undefined' &&
+      typeof props.obj_name != 'undefined') {
+      rte.setInput(props.obj_name)
       switch (props.type) {
         case 'debug':
-          logger.debug(msg).tagline()
+          logger.debug(msg).tag(rte).tagline()
           return
         case 'error':
-          logger.error(msg).tagline()
+          logger.error(msg).tag(rte).tagline()
           return
         case 'success':
-          logger.info(msg).tagline()
+          logger.info(msg).tag(rte).tagline()
           return
         case 'info':
-          logger.info(msg).tagline()
+          logger.info(msg).tag(rte).tagline()
           return
       }
       logger.error(`No type in json object`).tagline()
@@ -107,19 +110,33 @@ const sample_data_all = [
   { props: { id: 4, name: 'numb 4', log: qJson.logMsg } }
 ]
 
+append = tagline.appender('stopwatch')
+stw = new append(tagline)
+
 append = tagline.appender('anyMsg')
 act = new append(tagline)
+
+append = tagline.appender('route')
+rte = new append(tagline).setConfig({ "format": "rte(@route)" }).setInput('/test')
+
 
 qJson.init({ input_data: sample_data_all })
 
 try {
 
   qJson.process({}).then((success) => {
-    qJson.logMsg(`all success: (${JSON.stringify(success)})`, { "type": "success" })
+    logger.debug(`all success: (${JSON.stringify(success)})`).tag(stw.setStop()).tagline()
   }, (error) => {
-    qJson.logMsg(`all errors: (${JSON.stringify(error)})`, { "type": "error" })
+    logger.error(`all errors: (${JSON.stringify(error)})`).tag(stw.setStop()).tagline()
   })
 } catch (e) {
   qJson.logMsg(`error running qJsonAll`, { "type": "error" })
 }
 
+/* Expected output in my.log
+[2022-12-22T16:01:07.877] [info] myLog - (msg: processing id(1)) rte(class_test_all)
+[2022-12-22T16:01:07.882] [info] myLog - (msg: processing id(2)) rte(class_test_all)
+[2022-12-22T16:01:07.885] [error] myLog - (msg: this id(3) has some problem) rte(class_test_all)
+[2022-12-22T16:01:07.888] [info] myLog - (msg: processing id(4)) rte(class_test_all)
+[2022-12-22T16:01:07.903] [error] myLog - (msg: all errors: ({"err":"start (Thu Dec 22 2022 16:01:07 GMT-0700 (Mountain Standard Time)) end(Thu Dec 22 2022 16:01:07 GMT-0700 (Mountain Standard Time)) milliseconds(17)"})) stopwatch(12/22/2022, 4:01:07 PM - 12/22/2022, 4:01:07 PM = 0.062/mili)
+*/

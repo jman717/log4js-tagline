@@ -87,3 +87,11 @@ qObj.load(props).add(new test1()).add(new test2()).add(new test3()).add(new test
 }, err => {
   logger.error(`error with all processing: (${err})`).tag(stw.setStop()).tagline()
 })
+
+/* Expected output in my.log
+[2022-12-22T15:23:41.397] [info] myLog - (msg: success: processing all test1)
+[2022-12-22T15:23:41.399] [info] myLog - (msg: success: processing all test2)
+[2022-12-22T15:23:41.400] [info] myLog - (msg: success: processing all test3)
+[2022-12-22T15:23:41.400] [info] myLog - (msg: success: processing all test4)
+[2022-12-22T15:23:41.407] [debug] myLog - (msg: success with all processing: (start (Thu Dec 22 2022 15:23:41 GMT-0700 (Mountain Standard Time)) end(Thu Dec 22 2022 15:23:41 GMT-0700 (Mountain Standard Time)) milliseconds(5))) stopwatch(12/22/2022, 3:23:41 PM - 12/22/2022, 3:23:41 PM = 0.008/mili)
+*/
