@@ -17,7 +17,7 @@ const packageMock = {
     "log4js": "^6.7.1",
     "mocha": "^10.1.0",
     "node-dogstatsd": "0.0.7",
-    "queuejson": "^8.2.1"
+    "queuejson": "^8.2.2"
   },
   "scripts": {
     "start": "node app.js",
@@ -26,6 +26,7 @@ const packageMock = {
     "test_basic": "node ./tests/basic",
     "test_qObjAll": "node ./tests/qObjAll",
     "test_qObjBottom_One": "node ./tests/qObjBottom_One",
+    "test_qObjTop_One": "node ./tests/qObjTop_One",
     "test_qJsonAll": "node ./tests/qJsonAll"
   },
   "keywords": [
@@ -52,7 +53,7 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "3.2.2"
+  "version": "3.4.0"
 }
 
 describe('package.json', function () {
