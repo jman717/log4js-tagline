@@ -17,7 +17,7 @@ const packageMock = {
     "log4js": "^6.7.1",
     "mocha": "^10.1.0",
     "node-dogstatsd": "0.0.7",
-    "queuejson": "^8.2.2"
+    "queuejson": "^8.3.0"
   },
   "scripts": {
     "start": "node app.js",
@@ -53,7 +53,7 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "3.4.0"
+  "version": "3.4.1"
 }
 
 describe('package.json', function () {

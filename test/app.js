@@ -77,6 +77,10 @@ describe('app', function () {
                 }
             })
 
+            it('app.getTrace is a function', function () {
+                assert(typeof app.getTrace == 'function')
+            })
+
             it('app.getTrace should fail without parameters', function () {
                 try {
                     assert(app.getTrace())
