@@ -38,7 +38,9 @@ General Setup Test
 npm run test_basic
 npm run test_qObjAll
 npm run test_qObjBottom_One
+npm run test_qJsonTop_One
 npm run test_qJsonAll
+npm run test_qJsonBottom_One
 
 ```
 

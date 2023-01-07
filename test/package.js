@@ -27,7 +27,8 @@ const packageMock = {
     "test_qObjAll": "node ./tests/qObjAll",
     "test_qObjBottom_One": "node ./tests/qObjBottom_One",
     "test_qObjTop_One": "node ./tests/qObjTop_One",
-    "test_qJsonAll": "node ./tests/qJsonAll"
+    "test_qJsonAll": "node ./tests/qJsonAll",
+    "test_qJsonBottom_One": "node ./tests/qJsonBottom_One"
   },
   "keywords": [
     "logging",
@@ -53,7 +54,7 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "3.4.1"
+  "version": "3.5.0"
 }
 
 describe('package.json', function () {
