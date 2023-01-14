@@ -3,25 +3,41 @@ var assert = require('assert');
 describe('app', function () {
 
     describe('require', function () {
+
         it('colors', function () {
-            try {
-                colors = require('colors')
-                if (typeof colors == 'undefined') {
-                    throw new Error('no colors')
-                }
-            } catch (e) {
-                assert(false)
-            }
+            assert(require('colors'))
         })
 
         it('node-dogstatsd', function () {
-            try {
-                StatsD = require('node-dogstatsd').StatsD
-                if (typeof StatsD == 'undefined')
-                    throw new Error('no StatsD')
-            } catch (e) {
-                assert(false)
-            }
+            assert(require('node-dogstatsd'))
+        })
+
+        it('queuejson', function () {
+            assert(require('queuejson'))
+        })
+
+        it('mocha', function () {
+            assert(require('mocha'))
+        })
+
+        it('log4js', function () {
+            assert(require('log4js'))
+        })
+
+        it('email-smtp-cron-delivery', function () {
+            assert(require('email-smtp-cron-delivery'))
+        })
+
+        it('diffler', function () {
+            assert(require('diffler'))
+        })
+        
+        it('node-console-colors', function () {
+            assert(require('node-console-colors'))
+        })
+                
+        it('chai', function () {
+            assert(require('chai'))
         })
     })
 
