@@ -54,7 +54,7 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "3.6.1"
+  "version": "3.7.0"
 }
 
 describe('package.json', function () {
