@@ -10,7 +10,22 @@ var colors = require('colors'),
     StatsD = require('node-dogstatsd').StatsD,
     setup_owner,
     owner,
-    parent
+    parent,
+    file_queue = new require('file-obj-queue'),
+    file_requre_data = [
+        { props: { id: 100, name: "anyMsg", path: "./lib/appenders/anyMsg.js", absolute_path: __filename, check: true } },
+        { props: { id: 101, name: "boolean", path: "./lib/appenders/boolean.js", absolute_path: __filename, check: true } },
+        { props: { id: 102, name: "class_function", path: "./lib/appenders/class_function.js", absolute_path: __filename, check: true } },
+        { props: { id: 103, name: "counter", path: "./lib/appenders/counter.js", absolute_path: __filename, check: true } },
+        { props: { id: 104, name: "datadog", path: "./lib/appenders/datadog.js", absolute_path: __filename, check: true } },
+        { props: { id: 105, name: "displayLine", path: "./lib/appenders/displayLine.js", absolute_path: __filename, check: true } },
+        { props: { id: 106, name: "email", path: "./lib/appenders/email.js", absolute_path: __filename, check: true } },
+        { props: { id: 107, name: "error", path: "./lib/appenders/error.js", absolute_path: __filename, check: true } },
+        { props: { id: 108, name: "line", path: "./lib/appenders/line.js", absolute_path: __filename, check: true } },
+        { props: { id: 119, name: "organizational", path: "./lib/appenders/organizational.js", absolute_path: __filename, check: true } },
+        { props: { id: 110, name: "route", path: "./lib/appenders/route.js", absolute_path: __filename, check: true } },
+        { props: { id: 111, name: "stopwatch", path: "./lib/appenders/stopwatch.js", absolute_path: __filename, check: true } }
+    ]
 
 class TagLine {
     constructor(log4js, { display, output }) {
@@ -25,7 +40,7 @@ class TagLine {
             t.to_local_file = true
             t.to_datadog = true
             t.setOptions({ display, output })
-            t.appenders_dir = './lib/appenders/'
+            t.qRequire = new file_queue().init({ input_data: file_requre_data })  //jrm debug 1/20
             t.setup()
         } catch (e) {
             e.message = "log4js-tagline app.js init error: " + e.message
@@ -224,11 +239,16 @@ class TagLine {
     }
 
     appender(name) {
-        var t = owner
+        var t = owner, jsObj, i, file_obj
         try {
-            var a = t.appenders_dir + name + '.js'
-            console.log('tagline appender file loading=' + a.green)
-            return require(a)
+            file_obj = t.qRequire.getFileObject()
+
+            for (i = 0; i < file_obj.length; i++) {
+                jsObj = file_obj[i]
+                if (jsObj.name == name)
+                    return require(jsObj.path)
+            }
+            throw new Error(`no appender to process`)
         } catch (e) {
             e.message = "log4js-tagline app.js appender error: " + e.message
             console.log(e.message)
