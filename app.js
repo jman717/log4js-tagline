@@ -40,7 +40,7 @@ class TagLine {
             t.to_local_file = true
             t.to_datadog = true
             t.setOptions({ display, output })
-            t.qRequire = new file_queue().init({ input_data: file_requre_data })  //jrm debug 1/20
+            t.qRequire = new file_queue().init({ input_data: file_requre_data })  
             t.setup()
         } catch (e) {
             e.message = "log4js-tagline app.js init error: " + e.message
