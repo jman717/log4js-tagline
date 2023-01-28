@@ -1,5 +1,11 @@
+[![npm Package](https://img.shields.io/npm/v/log4js-tagline.svg)](https://www.npmjs.org/package/log4js-tagline)
+[![License](https://img.shields.io/npm/l/log4js-tagline.svg)](https://github.com/jman717/log4js-tagline/blob/master/LICENSE)
+
+[![NPM](https://nodei.co/npm/log4js-tagline.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/log4js-tagline/)
 
 log4js-tagline is an extension of the node logging package log4js. Tags can be created and used independently or in combination with other tags; the output can be directed to both a local file, console, datadog, combinations of both on the fly or none. Each tag itteration is incremented.
+
+---------
 
 Included object processing:
 
