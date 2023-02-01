@@ -78,7 +78,9 @@ qJson.logMsg = (msg, props = {}) => {
   try {
     let t = this, tp
     if (typeof props != 'undefined' &&
-      typeof props.type != 'undefined') {
+      typeof props.type != 'undefined' &&
+      typeof props.obj_name != 'undefined') {
+      rte.setInput(props.obj_name)
       switch (props.type) {
         case 'debug':
           logger.debug(msg).tag(rte).tagline()
@@ -132,17 +134,9 @@ try {
 }
 
 /* Expected output in my.log
-[2023-01-21T18:15:08.846] [debug] myLog - (msg: app init appender(all)) rte(/test)
-[2023-01-21T18:15:08.849] [info] myLog - (msg: class_test_all object name (test)(1)) rte(/test)
-[2023-01-21T18:15:08.851] [info] myLog - (msg: class_test_all object name (another)(2)) rte(/test)
-[2023-01-21T18:15:08.852] [info] myLog - (msg: class_test_all object name (numb 3)(3)) rte(/test)
-[2023-01-21T18:15:08.853] [info] myLog - (msg: class_test_all object name (numb 4)(4)) rte(/test)
-[2023-01-21T18:15:08.881] [debug] myLog - (msg: all constructor) rte(/test)
-[2023-01-21T18:15:08.884] [debug] myLog - (msg: base process) rte(/test)
-[2023-01-21T18:15:08.886] [debug] myLog - (msg: base process_all) rte(/test)
-[2023-01-21T18:15:08.890] [info] myLog - (msg: processing id(1)) rte(/test)
-[2023-01-21T18:15:08.897] [info] myLog - (msg: processing id(2)) rte(/test)
-[2023-01-21T18:15:08.901] [error] myLog - (msg: this id(3) has some problem) rte(/test)
-[2023-01-21T18:15:08.904] [info] myLog - (msg: processing id(4)) rte(/test)
-[2023-01-21T18:15:08.914] [error] myLog - (msg: all errors: ({"err":"start (Sat Jan 21 2023 18:15:08 GMT-0700 (Mountain Standard Time)) end(Sat Jan 21 2023 18:15:08 GMT-0700 (Mountain Standard Time)) milliseconds(17)"})) stopwatch(1/21/2023, 6:15:08 PM - 1/21/2023, 6:15:08 PM = 0.089/mili)
+[2022-12-22T16:01:07.877] [info] myLog - (msg: processing id(1)) rte(class_test_all)
+[2022-12-22T16:01:07.882] [info] myLog - (msg: processing id(2)) rte(class_test_all)
+[2022-12-22T16:01:07.885] [error] myLog - (msg: this id(3) has some problem) rte(class_test_all)
+[2022-12-22T16:01:07.888] [info] myLog - (msg: processing id(4)) rte(class_test_all)
+[2022-12-22T16:01:07.903] [error] myLog - (msg: all errors: ({"err":"start (Thu Dec 22 2022 16:01:07 GMT-0700 (Mountain Standard Time)) end(Thu Dec 22 2022 16:01:07 GMT-0700 (Mountain Standard Time)) milliseconds(17)"})) stopwatch(12/22/2022, 4:01:07 PM - 12/22/2022, 4:01:07 PM = 0.062/mili)
 */

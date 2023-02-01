@@ -16,8 +16,7 @@ const packageMock = {
     "log4js": "^6.7.1",
     "mocha": "^10.1.0",
     "node-dogstatsd": "0.0.7",
-    "file-obj-queue": "^1.0.1",
-    "queuejson": "^9.0.0"
+    "queuejson": "^8.4.0"
   },
   "scripts": {
     "start": "node app.js",
@@ -29,8 +28,7 @@ const packageMock = {
     "test_qObjTop_One": "node ./tests/qObjTop_One",
     "test_qJsonAll": "node ./tests/qJsonAll",
     "test_qJsonBottom_One": "node ./tests/qJsonBottom_One",
-    "test_qJsonTop_One": "node ./tests/qJsonTop_One",
-    "test_qJsonFuncAll": "node ./tests/qJsonFuncAll"
+    "test_qJsonTop_One": "node ./tests/qJsonTop_One"
   },
   "keywords": [
     "logging",
@@ -56,7 +54,7 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "4.1.1"
+  "version": "4.1.2"
 }
 
 describe('package.json', function () {

@@ -78,7 +78,9 @@ qJson.logMsg = (msg, props = {}) => {
   try {
     let t = this, tp
     if (typeof props != 'undefined' &&
-      typeof props.type != 'undefined') {
+      typeof props.type != 'undefined' &&
+      typeof props.obj_name != 'undefined') {
+      rte.setInput(props.obj_name)
       switch (props.type) {
         case 'debug':
           logger.debug(msg).tag(rte).tagline()
@@ -97,7 +99,7 @@ qJson.logMsg = (msg, props = {}) => {
     }
     throw new Error('No props.type included')
   } catch (e) {
-    logger.error(`app log: ${e.message} for message (${msg})`).tagline()
+    console.log(`app log: ${e.message} for message (${msg})`)
   }
 }
 
@@ -115,7 +117,8 @@ append = tagline.appender('anyMsg')
 act = new append(tagline)
 
 append = tagline.appender('route')
-rte = new append(tagline).setConfig({ "format": "rte(@route)" }).setInput('/my_test')
+rte = new append(tagline).setConfig({ "format": "rte(@route)" }).setInput('/test')
+
 
 qJson.init({ input_data: sample_data_all })
 
@@ -131,11 +134,6 @@ try {
 }
 
 /* Expected output in my.log
-[2023-01-21T18:16:57.758] [debug] myLog - (msg: app init appender(bottom_one)) rte(/my_test)
-[2023-01-21T18:16:57.760] [info] myLog - (msg: class_test_bottom_one object name (numb 4)(4)) rte(/my_test)
-[2023-01-21T18:16:57.791] [debug] myLog - (msg: bottom_one constructor) rte(/my_test)
-[2023-01-21T18:16:57.792] [debug] myLog - (msg: base process) rte(/my_test)
-[2023-01-21T18:16:57.793] [debug] myLog - (msg: base process_all) rte(/my_test)
-[2023-01-21T18:16:57.795] [info] myLog - (msg: processing id(4)) rte(/my_test)
-[2023-01-21T18:16:57.808] [debug] myLog - (msg: all success: ({"res":"start (Sat Jan 21 2023 18:16:57 GMT-0700 (Mountain Standard Time)) end(Sat Jan 21 2023 18:16:57 GMT-0700 (Mountain Standard Time)) milliseconds(3)"})) stopwatch(1/21/2023, 6:16:57 PM - 1/21/2023, 6:16:57 PM = 0.076/mili)
+[2023-01-06T18:56:40.977] [info] myLog - (msg: processing id(4)) rte(class_test_bottom_one)
+[2023-01-06T18:56:40.988] [debug] myLog - (msg: all success: ({"res":"start (Fri Jan 06 2023 18:56:40 GMT-0700 (Mountain Standard Time)) end(Fri Jan 06 2023 18:56:40 GMT-0700 (Mountain Standard Time)) milliseconds(8)"})) stopwatch(1/6/2023, 6:56:40 PM - 1/6/2023, 6:56:40 PM = 0.063/mili)
 */
