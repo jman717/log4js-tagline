@@ -17,6 +17,11 @@ const packageMock = {
     "node-console-colors": "^1.1.4",
     "node-dogstatsd": "0.0.7"
   },
+  "devDependencies": {
+    "underscore": ">=1.12.1",
+    "nodemailer": ">=6.6.1",
+    "minimist": ">=1.2.6"
+  },
   "scripts": {
     "start": "node app.js",
     "test": "mocha",
@@ -53,8 +58,9 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "4.1.6"
+  "version": "4.1.7"
 }
+
 describe('package.json', function () {
   it('should pass', function () {
     const difference = jsonHasDifferences(packagejson, packageMock)
