@@ -9,14 +9,17 @@ const packageMock = {
   "bundleDependencies": [],
   "dependencies": {
     "chai": "^4.3.7",
-    "node-console-colors": "^1.1.4",
     "diffler": "^2.0.4",
     "ditched": "^2.2.0",
     "email-smtp-cron-delivery": "^0.1.0",
     "log4js": "^6.7.1",
+    "minimist": "^1.2.6",
     "mocha": "^10.1.0",
+    "node-console-colors": "^1.1.4",
     "node-dogstatsd": "0.0.7",
-    "queuejson": "^8.4.0"
+    "nodemailer": "^6.4.16",
+    "queuejson": "^8.4.0",
+    "underscore": "^1.12.1"
   },
   "scripts": {
     "start": "node app.js",
@@ -54,9 +57,8 @@ const packageMock = {
   "main": "app.js",
   "name": "log4js-tagline",
   "start": "node app.js",
-  "version": "4.1.4"
+  "version": "4.1.5"
 }
-
 describe('package.json', function () {
   it('should pass', function () {
     const difference = jsonHasDifferences(packagejson, packageMock)
