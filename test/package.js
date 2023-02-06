@@ -6,7 +6,7 @@ const packageMock = {
   "author": {
     "name": "Jim Manton"
   },
-  "version": "4.1.14",
+  "version": "4.1.15",
   "bundleDependencies": [],
   "dependencies": {
     "chai": "^4.3.7",
