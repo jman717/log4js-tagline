@@ -6,12 +6,13 @@ const packageMock = {
   "author": {
     "name": "Jim Manton"
   },
-  "version": "4.1.15",
+  "version": "4.1.16",
   "bundleDependencies": [],
   "dependencies": {
     "chai": "^4.3.7",
     "diffler": "^2.0.4",
     "ditched": "^2.2.0",
+    "email-smtp-cron-delivery": "^0.1.0",
     "log4js": "^6.7.1",
     "mocha": "^10.1.0",
     "node-console-colors": "^1.1.4",
