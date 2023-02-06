@@ -6,6 +6,7 @@ const packageMock = {
   "author": {
     "name": "Jim Manton"
   },
+  "version": "4.1.14",
   "bundleDependencies": [],
   "dependencies": {
     "chai": "^4.3.7",
@@ -57,8 +58,7 @@ const packageMock = {
   "license": "ISC",
   "main": "app.js",
   "name": "log4js-tagline",
-  "start": "node app.js",
-  "version": "4.1.8"
+  "start": "node app.js"
 }
 
 describe('package.json', function () {
