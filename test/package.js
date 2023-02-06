@@ -6,9 +6,9 @@ const packageMock = {
   "author": {
     "name": "Jim Manton"
   },
+  "version": "4.1.12",
   "bundleDependencies": [],
   "dependencies": {
-    "@nearform/sql": "^1.10.0",
     "chai": "^4.3.7",
     "colors": "^1.4.0",
     "diffler": "^2.0.4",
@@ -54,9 +54,9 @@ const packageMock = {
   "license": "ISC",
   "main": "app.js",
   "name": "log4js-tagline",
-  "start": "node app.js",
-  "version": "4.1.11"
+  "start": "node app.js"
 }
+
 
 describe('package.json', function () {
   it('should pass', function () {
