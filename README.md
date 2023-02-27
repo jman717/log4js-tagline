@@ -1,7 +1,10 @@
 [![npm Package](https://img.shields.io/npm/v/log4js-tagline.svg)](https://www.npmjs.org/package/log4js-tagline)
 [![License](https://img.shields.io/npm/l/log4js-tagline.svg)](https://github.com/jman717/log4js-tagline/blob/master/LICENSE)
+[![CodeQL](https://github.com/jman717/log4js-tagline/actions/workflows/actions.yml/badge.svg)](https://github.com/jman717/log4js-tagline/actions/workflows/actions.yml)
+[![Node.js CI](https://github.com/jman717/log4js-tagline/actions/workflows/node.js.yml/badge.svg)](https://github.com/jman717/log4js-tagline/actions/workflows/node.js.yml)
 
 [![NPM](https://nodei.co/npm/log4js-tagline.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/log4js-tagline/)
+
 
 log4js-tagline is an extension of the node logging package log4js. Tags can be created and used independently or in combination with other tags; the output can be directed to both a local file, console, datadog, combinations of both on the fly or none. Each tag itteration is incremented.
 
@@ -10,7 +13,7 @@ log4js-tagline is an extension of the node logging package log4js. Tags can be c
 Included object processing:
 
 * queueObj - Support for dynamic objects with all the tagline appenders 
-* queueJson - Support for dynamic objects with all the tagline appenders 
+* queueJson - depreciated. All appenders have been moved into queueObj. See the example tests.
 
 Included tag appenders:
 
@@ -38,16 +41,15 @@ Mocha Test
 npm test
 ```
 
-General Setup Tests
+General Setup Tests. All tests starting with the letter q are examples of queueObj. The letters beginning with qj indicate queueObj Json samples.
 ---------
 ```
 npm run test_basic
-npm run test_qObjAll
-npm run test_qObjBottom_One
-npm run test_qJsonTop_One
-npm run test_qJsonAll
-npm run test_qJsonBottom_One
-npm run test_qJsonTop_One
-
+npm run test_qAll
+npm run test_qTopOne
+npm run test_qBottomOne
+npm run test_qjAll
+npm run test_qjBottomOne
+npm run test_qjTopOne
 
 ```

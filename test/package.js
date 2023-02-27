@@ -6,7 +6,7 @@ const packageMock = {
   "author": {
     "name": "Jim Manton"
   },
-  "version": "4.1.17",
+  "version": "5.0.0",
   "bundleDependencies": [],
   "dependencies": {
     "chai": "^4.3.7",
@@ -16,24 +16,25 @@ const packageMock = {
     "log4js": "^6.7.1",
     "mocha": "^10.1.0",
     "node-console-colors": "^1.1.4",
-    "node-dogstatsd": "0.0.7"
+    "node-dogstatsd": "0.0.7",
+    "queueobj": "^14.0.6"
   },
   "devDependencies": {
-    "underscore": ">=1.12.1",
+    "minimist": ">=1.2.6",
     "nodemailer": ">=6.6.1",
-    "minimist": ">=1.2.6"
+    "underscore": ">=1.12.1"
   },
   "scripts": {
     "start": "node app.js",
     "test": "mocha",
     "ditched": "ditched -a",
     "test_basic": "node ./tests/basic",
-    "test_qObjAll": "node ./tests/qObjAll",
-    "test_qObjBottom_One": "node ./tests/qObjBottom_One",
-    "test_qObjTop_One": "node ./tests/qObjTop_One",
-    "test_qJsonAll": "node ./tests/qJsonAll",
-    "test_qJsonBottom_One": "node ./tests/qJsonBottom_One",
-    "test_qJsonTop_One": "node ./tests/qJsonTop_One"
+    "test_qAll": "node ./tests/queueobj/all",
+    "test_qTopOne": "node ./tests/queueobj/topone",
+    "test_qBottomOne": "node ./tests/queueobj/bottomone",
+    "test_qjAll": "node ./tests/queueobj/jall",
+    "test_qjBottomOne": "node ./tests/queueobj/jbottomone",
+    "test_qjTopOne": "node ./tests/queueobj/jtopone"
   },
   "keywords": [
     "logging",
@@ -60,6 +61,8 @@ const packageMock = {
   "name": "log4js-tagline",
   "start": "node app.js"
 }
+
+
 
 describe('package.json', function () {
   it('should pass', function () {
