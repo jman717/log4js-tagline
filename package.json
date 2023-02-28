@@ -28,9 +28,15 @@
     "test_qAll": "node ./tests/queueobj/all",
     "test_qTopOne": "node ./tests/queueobj/topone",
     "test_qBottomOne": "node ./tests/queueobj/bottomone",
+    "test_qFuncAll": "node ./tests/queueobj/funcall",
+    "test_qStatusMatching": "node ./tests/queueobj/statusmatching",
+    "test_qNonStatusMatching": "node ./tests/queueobj/nonstatusmatching",
     "test_qjAll": "node ./tests/queueobj/jall",
+    "test_qjTopOne": "node ./tests/queueobj/jtopone",
     "test_qjBottomOne": "node ./tests/queueobj/jbottomone",
-    "test_qjTopOne": "node ./tests/queueobj/jtopone"
+    "test_qjFuncAll": "node ./tests/queueobj/jfuncall",
+    "test_qjStatusMatching": "node ./tests/queueobj/jstatusmatching",
+    "test_qjNonStatusMatching": "node ./tests/queueobj/jnonstatusmatching"
   },
   "keywords": [
     "logging",

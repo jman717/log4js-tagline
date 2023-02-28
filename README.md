@@ -41,13 +41,15 @@ Mocha Test
 npm test
 ```
 
-General Setup Tests. All tests starting with the letter q are examples of queueObj. The letters beginning with qj indicate queueObj Json samples.
+General Setup Tests. 
 ---------
+All tests starting with the letter test_q.. are examples of queueObj. The letters beginning with test_qj indicate queueObj Json samples.
 ```
 npm run test_basic
 npm run test_qAll
 npm run test_qTopOne
 npm run test_qBottomOne
+npm run test_qFuncAll
 npm run test_qjAll
 npm run test_qjBottomOne
 npm run test_qjTopOne
