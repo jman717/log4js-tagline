@@ -6,7 +6,7 @@ const packageMock = {
   "author": {
     "name": "Jim Manton"
   },
-  "version": "5.0.1",
+  "version": "5.1.0",
   "bundleDependencies": [],
   "dependencies": {
     "chai": "^4.3.7",
@@ -17,7 +17,7 @@ const packageMock = {
     "mocha": "^10.1.0",
     "node-console-colors": "^1.1.4",
     "node-dogstatsd": "0.0.7",
-    "queueobj": "^14.0.6"
+    "queueobj": "^14.1.0"
   },
   "devDependencies": {
     "minimist": ">=1.2.6",
@@ -32,9 +32,19 @@ const packageMock = {
     "test_qAll": "node ./tests/queueobj/all",
     "test_qTopOne": "node ./tests/queueobj/topone",
     "test_qBottomOne": "node ./tests/queueobj/bottomone",
+    "test_qFuncAll": "node ./tests/queueobj/funcall",
+    "test_qStatusMatching": "node ./tests/queueobj/statusmatching",
+    "test_qNonStatusMatching": "node ./tests/queueobj/nonstatusmatching",
+    "test_qNameMatching": "node ./tests/queueobj/namematching",
+    "test_qNameNonMatching": "node ./tests/queueobj/nonnamematching",
     "test_qjAll": "node ./tests/queueobj/jall",
+    "test_qjTopOne": "node ./tests/queueobj/jtopone",
     "test_qjBottomOne": "node ./tests/queueobj/jbottomone",
-    "test_qjTopOne": "node ./tests/queueobj/jtopone"
+    "test_qjFuncAll": "node ./tests/queueobj/jfuncall",
+    "test_qjStatusMatching": "node ./tests/queueobj/jstatusmatching",
+    "test_qjStatusNonMatching": "node ./tests/queueobj/jnonstatusmatching",
+    "test_qjNameMatching": "node ./tests/queueobj/jnamematching",
+    "test_qjNameNonMatching": "node ./tests/queueobj/jnamenonmatching"
   },
   "keywords": [
     "logging",
@@ -61,7 +71,6 @@ const packageMock = {
   "name": "log4js-tagline",
   "start": "node app.js"
 }
-
 
 
 describe('package.json', function () {
