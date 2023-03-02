@@ -52,6 +52,8 @@ npm run test_qBottomOne
 npm run test_qFuncAll
 npm run test_qStatusMatching
 npm run test_qNonStatusMatching
+npm run test_qVersionMatching
+npm run test_qVersionNonMatching
 npm run test_qNameMatching
 npm run test_qNameNonMatching
 npm run test_qjAll
@@ -62,5 +64,7 @@ npm run test_qjStatusMatching
 npm run test_qjStatusNonMatching
 npm run test_qjNameMatching
 npm run test_qjNameNonMatching
+npm run test_qjVersionMatching
+npm run test_qjVersionNonMatching
 
 ```

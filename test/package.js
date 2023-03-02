@@ -6,7 +6,7 @@ const packageMock = {
   "author": {
     "name": "Jim Manton"
   },
-  "version": "5.1.0",
+  "version": "5.2.0",
   "bundleDependencies": [],
   "dependencies": {
     "chai": "^4.3.7",
@@ -17,7 +17,7 @@ const packageMock = {
     "mocha": "^10.1.0",
     "node-console-colors": "^1.1.4",
     "node-dogstatsd": "0.0.7",
-    "queueobj": "^14.1.0"
+    "queueobj": "^14.1.3"
   },
   "devDependencies": {
     "minimist": ">=1.2.6",
@@ -35,6 +35,8 @@ const packageMock = {
     "test_qFuncAll": "node ./tests/queueobj/funcall",
     "test_qStatusMatching": "node ./tests/queueobj/statusmatching",
     "test_qNonStatusMatching": "node ./tests/queueobj/nonstatusmatching",
+    "test_qVersionMatching": "node ./tests/queueobj/versionmatching",
+    "test_qVersionNonMatching": "node ./tests/queueobj/versionnonmatching",
     "test_qNameMatching": "node ./tests/queueobj/namematching",
     "test_qNameNonMatching": "node ./tests/queueobj/nonnamematching",
     "test_qjAll": "node ./tests/queueobj/jall",
@@ -44,7 +46,9 @@ const packageMock = {
     "test_qjStatusMatching": "node ./tests/queueobj/jstatusmatching",
     "test_qjStatusNonMatching": "node ./tests/queueobj/jnonstatusmatching",
     "test_qjNameMatching": "node ./tests/queueobj/jnamematching",
-    "test_qjNameNonMatching": "node ./tests/queueobj/jnamenonmatching"
+    "test_qjNameNonMatching": "node ./tests/queueobj/jnamenonmatching",
+    "test_qjVersionMatching": "node ./tests/queueobj/jversionmatching",
+    "test_qjVersionNonMatching": "node ./tests/queueobj/jversionnonmatching"
   },
   "keywords": [
     "logging",
