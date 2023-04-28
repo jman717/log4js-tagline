@@ -13,11 +13,11 @@ const packageMock = {
     "diffler": "^2.0.4",
     "ditched": "^2.2.0",
     "email-smtp-cron-delivery": "^0.1.0",
-    "log4js": "^6.7.1",
+    "log4js": "^6.9.1",
     "mocha": "^10.1.0",
     "node-console-colors": "^1.1.4",
     "node-dogstatsd": "0.0.7",
-    "queueobj": "^14.1.3"
+    "queueobj": "^15.1.0"
   },
   "devDependencies": {
     "minimist": ">=1.2.6",
@@ -75,7 +75,6 @@ const packageMock = {
   "name": "log4js-tagline",
   "start": "node app.js"
 }
-
 
 describe('package.json', function () {
   it('should pass', function () {

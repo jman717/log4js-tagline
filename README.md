@@ -43,7 +43,7 @@ npm test
 
 General Setup Tests. 
 ---------
-All tests starting with the letter test_q.. are examples of queueObj. The letters beginning with test_qj indicate queueObj Json samples.
+All tests starting with the letter test_q... are examples of queueObj. The letters beginning with test_qj... indicate queueObj Json samples.
 ```
 npm run test_basic
 npm run test_qAll    
