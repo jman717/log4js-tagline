@@ -106,7 +106,6 @@ var file_object = class file_obj {
 
   process(callback) {
       let t = this
-      console.log(`jrm debug 2/26 55(${typeof t.log})`)
       t.log({ msg: `processing object id ${t.id}. Do a bunch of stuff here.`, type: "info" })
       if (t.errors)
           callback({ error: { msg: t.error_msg } })
