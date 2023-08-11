@@ -6,7 +6,7 @@ const packageMock = {
   "author": {
     "name": "Jim Manton"
   },
-  "version": "5.3.3",
+  "version": "5.3.4",
   "bundleDependencies": [],
   "dependencies": {
     "chai": "^4.3.7",
@@ -18,12 +18,10 @@ const packageMock = {
     "node-console-colors": "^1.1.4",
     "node-dogstatsd": "0.0.7",
     "queueobj": "^15.1.0",
+    "minimist": "^1.2.6",
+    "nodemailer": "^6.9.4",
+    "underscore": "^1.12.1",
     "typescript": "^5.1.6"
-  },
-  "devDependencies": {
-    "minimist": ">=1.2.6",
-    "nodemailer": ">=6.9.4",
-    "underscore": ">=1.12.1"
   },
   "scripts": {
     "start": "node app.js",
@@ -76,6 +74,7 @@ const packageMock = {
   "name": "log4js-tagline",
   "start": "node app.js"
 }
+
 
 describe('package.json', function () {
   it('should pass', function () {
