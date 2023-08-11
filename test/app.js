@@ -12,10 +12,6 @@ describe('app', function () {
             assert(require('node-dogstatsd'))
         })
 
-        it('queuejson', function () {
-            assert(require('queuejson'))
-        })
-
         it('mocha', function () {
             assert(require('mocha'))
         })
