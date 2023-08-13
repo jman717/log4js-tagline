@@ -6,7 +6,7 @@ const packageMock = {
   "author": {
     "name": "Jim Manton"
   },
-  "version": "5.3.6",
+  "version": "5.3.7",
   "bundleDependencies": [],
   "dependencies": {
     "chai": "^4.3.7",
@@ -23,7 +23,7 @@ const packageMock = {
   },
   "devDependencies": {
     "minimist": ">=1.2.6",
-    "nodemailer": ">=6.9.4",
+    "nodemailer": ">=6.9.3",
     "underscore": ">=1.12.1"
   },
   "scripts": {
