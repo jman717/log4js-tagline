@@ -6,18 +6,19 @@ const packageMock = {
   "author": {
     "name": "Jim Manton"
   },
-  "version": "5.3.15",
+  "version": "5.3.16",
   "bundleDependencies": [],
   "dependencies": {
-    "chai": ">=4.3.7",
-    "diffler": ">=2.0.4",
-    "log4js": ">=6.9.1",
-    "mocha": ">=10.1.0",
-    "node-console-colors": ">=1.1.4",
-    "node-dogstatsd": ">=0.0.7",
-    "queueobj": ">=15.1.0",
-    "ts-node": ">=10.9.1",
-    "typescript": ">=5.1.6"
+    "chai": "^4.3.7",
+    "diffler": "^2.0.4",
+    "log4js": "^6.9.1",
+    "mocha": "^10.1.0",
+    "node-console-colors": "^1.1.4",
+    "email-smtp-cron-delivery": "^0.1.1",
+    "node-dogstatsd": "^0.0.7",
+    "queueobj": "^15.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
   },
   "devDependencies": {
     "minimist": ">=1.2.6"

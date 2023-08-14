@@ -20,7 +20,7 @@ describe('app', function () {
             assert(require('log4js'))
         })
 
-        it.skip('email-smtp-cron-delivery', function () {
+        it('email-smtp-cron-delivery', function () {
             assert(require('email-smtp-cron-delivery'))
         })
 
