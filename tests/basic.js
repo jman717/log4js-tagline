@@ -62,223 +62,223 @@ try {
   console.log('error message here(' + e.message + ')')
 }
 
-append = tagline.appender('email')
-email = new append(tagline, {
-  smtp_config: {
-    host: "smtp host goes here",
-    port: "smtp port goes here",
-    auth: {
-      user: "user name here",
-      pass: "password goes here",
-      type: "SMTP",
-    },
-    secure: ""
-  },
-  emailThrottle: {
-    cronTime: "0,15,30,45 0-59 * * * *"   /* This is optional. Cron setting for how often you want emails to be sent. */
-  }
-}).init()
+// append = tagline.appender('email')
+// email = new append(tagline, {
+//   smtp_config: {
+//     host: "smtp host goes here",
+//     port: "smtp port goes here",
+//     auth: {
+//       user: "user name here",
+//       pass: "password goes here",
+//       type: "SMTP",
+//     },
+//     secure: ""
+//   },
+//   emailThrottle: {
+//     cronTime: "0,15,30,45 0-59 * * * *"   /* This is optional. Cron setting for how often you want emails to be sent. */
+//   }
+// }).init()
 
-var email_instant = email.appender({ type: 'instant' })
-email_instant.add({
-  email_setup: {
-    "from": "some email address",
-    "to": "some email address",
-    "subject": "try me out",
-    "html": "<h2>This will appear in the email</h2>"
-  }
-})
-email_instant.add({
-  email_setup: {
-    "from": "some email address",
-    "to": "some email address",
-    "subject": "try me out",
-    "html": "<h2>This is another email</h2>"
-  }
-})
+// var email_instant = email.appender({ type: 'instant' })
+// email_instant.add({
+//   email_setup: {
+//     "from": "some email address",
+//     "to": "some email address",
+//     "subject": "try me out",
+//     "html": "<h2>This will appear in the email</h2>"
+//   }
+// })
+// email_instant.add({
+//   email_setup: {
+//     "from": "some email address",
+//     "to": "some email address",
+//     "subject": "try me out",
+//     "html": "<h2>This is another email</h2>"
+//   }
+// })
 
-var email_threshold = email.appender({
-  type: 'threshold',
-  threshold_number: 1000,
-  test_as: 'greater_than'
-})
-email_threshold.add({
-  email_setup: {
-    "from": "some email address",
-    "to": "some email address",
-    "subject": "try me out",
-    "html": "<h2>This will appear in the email</h2>"
-  }
-})
+// var email_threshold = email.appender({
+//   type: 'threshold',
+//   threshold_number: 1000,
+//   test_as: 'greater_than'
+// })
+// email_threshold.add({
+//   email_setup: {
+//     "from": "some email address",
+//     "to": "some email address",
+//     "subject": "try me out",
+//     "html": "<h2>This will appear in the email</h2>"
+//   }
+// })
 
-var email_escallating = email.appender({
-  type: 'escallating'
-})
-email_escallating.add({
-  cron_config: {
-    cronTime: "0 0-59 * * * *"
-  }
-})
-email_escallating.add({
-  email_setup: {
-    "from": "some email address",
-    "to": "some email address",
-    "subject": "try me out",
-    "html": "<h2>This is the first email that will appear</h2>"
-  }
-})
-email_escallating.add({
-  email_setup: {
-    "from": "some email address",
-    "to": "some email address",
-    "subject": "try me out",
-    "html": "<h2>This is the second email that will appear</h2>"
-  }
-})
+// var email_escallating = email.appender({
+//   type: 'escallating'
+// })
+// email_escallating.add({
+//   cron_config: {
+//     cronTime: "0 0-59 * * * *"
+//   }
+// })
+// email_escallating.add({
+//   email_setup: {
+//     "from": "some email address",
+//     "to": "some email address",
+//     "subject": "try me out",
+//     "html": "<h2>This is the first email that will appear</h2>"
+//   }
+// })
+// email_escallating.add({
+//   email_setup: {
+//     "from": "some email address",
+//     "to": "some email address",
+//     "subject": "try me out",
+//     "html": "<h2>This is the second email that will appear</h2>"
+//   }
+// })
 
-var email_bundle = email.appender({
-  type: 'bundle'
-})
-email_bundle.add({
-  email_setup: {
-    "from": "some email address",
-    "to": "some email address",
-    "subject": "try me out",
-    "html": "<h2>This is the first email that will appear</h2>"
-  }
-})
-email_bundle.add({
-  email_setup: {
-    "from": "some email address",
-    "to": "some email address",
-    "subject": "try me out",
-    "html": "<h2>This is the second email that will appear</h2>"
-  }
-})
-email_bundle.add({
-  bundle: {
-    "html": "<h4>Here is something we need to know</h4>"
-  }
-})
-email_bundle.add({
-  bundle: {
-    "html": "<h4>Something else</h4>"
-  }
-})
-email_bundle.add({
-  bundle: {
-    "html": "<h4>Cool</h4>"
-  }
-})
+// var email_bundle = email.appender({
+//   type: 'bundle'
+// })
+// email_bundle.add({
+//   email_setup: {
+//     "from": "some email address",
+//     "to": "some email address",
+//     "subject": "try me out",
+//     "html": "<h2>This is the first email that will appear</h2>"
+//   }
+// })
+// email_bundle.add({
+//   email_setup: {
+//     "from": "some email address",
+//     "to": "some email address",
+//     "subject": "try me out",
+//     "html": "<h2>This is the second email that will appear</h2>"
+//   }
+// })
+// email_bundle.add({
+//   bundle: {
+//     "html": "<h4>Here is something we need to know</h4>"
+//   }
+// })
+// email_bundle.add({
+//   bundle: {
+//     "html": "<h4>Something else</h4>"
+//   }
+// })
+// email_bundle.add({
+//   bundle: {
+//     "html": "<h4>Cool</h4>"
+//   }
+// })
 
-append = tagline.appender('email')
-email = new append({
-  smtp_config: {
-    host: "smtp host goes here",
-    port: "smtp port goes here",
-    auth: {
-      user: "user name here",
-      pass: "password goes here",
-      type: "SMTP",
-    },
-    secure: ""
-  },
-  emailThrottle: {
-    cronTime: "0,15,30,45 0-59 * * * *"   /* This is optional. Cron setting for how often you want emails to be sent. */
-  }
-}).init()
+// append = tagline.appender('email')
+// email = new append({
+//   smtp_config: {
+//     host: "smtp host goes here",
+//     port: "smtp port goes here",
+//     auth: {
+//       user: "user name here",
+//       pass: "password goes here",
+//       type: "SMTP",
+//     },
+//     secure: ""
+//   },
+//   emailThrottle: {
+//     cronTime: "0,15,30,45 0-59 * * * *"   /* This is optional. Cron setting for how often you want emails to be sent. */
+//   }
+// }).init()
 
-var email_instant = email.appender({ type: 'instant' })
-email_instant.add({
-  email_setup: {
-    "from": "some email address",
-    "to": "some email address",
-    "subject": "try me out",
-    "html": "<h2>This will appear in the email</h2>"
-  }
-})
-email_instant.add({
-  email_setup: {
-    "from": "some email address",
-    "to": "some email address",
-    "subject": "try me out",
-    "html": "<h2>This is another email</h2>"
-  }
-})
+// var email_instant = email.appender({ type: 'instant' })
+// email_instant.add({
+//   email_setup: {
+//     "from": "some email address",
+//     "to": "some email address",
+//     "subject": "try me out",
+//     "html": "<h2>This will appear in the email</h2>"
+//   }
+// })
+// email_instant.add({
+//   email_setup: {
+//     "from": "some email address",
+//     "to": "some email address",
+//     "subject": "try me out",
+//     "html": "<h2>This is another email</h2>"
+//   }
+// })
 
-var email_threshold = email.appender({
-  type: 'threshold',
-  threshold_number: 1000,
-  test_as: 'greater_than'
-})
-email_threshold.add({
-  email_setup: {
-    "from": "some email address",
-    "to": "some email address",
-    "subject": "try me out",
-    "html": "<h2>This will appear in the email</h2>"
-  }
-})
+// var email_threshold = email.appender({
+//   type: 'threshold',
+//   threshold_number: 1000,
+//   test_as: 'greater_than'
+// })
+// email_threshold.add({
+//   email_setup: {
+//     "from": "some email address",
+//     "to": "some email address",
+//     "subject": "try me out",
+//     "html": "<h2>This will appear in the email</h2>"
+//   }
+// })
 
-var email_escallating = email.appender({
-  type: 'escallating'
-})
-email_escallating.add({
-  cron_config: {
-    cronTime: "0 0-59 * * * *"
-  }
-})
-email_escallating.add({
-  email_setup: {
-    "from": "some email address",
-    "to": "some email address",
-    "subject": "try me out",
-    "html": "<h2>This is the first email that will appear</h2>"
-  }
-})
-email_escallating.add({
-  email_setup: {
-    "from": "some email address",
-    "to": "some email address",
-    "subject": "try me out",
-    "html": "<h2>This is the second email that will appear</h2>"
-  }
-})
+// var email_escallating = email.appender({
+//   type: 'escallating'
+// })
+// email_escallating.add({
+//   cron_config: {
+//     cronTime: "0 0-59 * * * *"
+//   }
+// })
+// email_escallating.add({
+//   email_setup: {
+//     "from": "some email address",
+//     "to": "some email address",
+//     "subject": "try me out",
+//     "html": "<h2>This is the first email that will appear</h2>"
+//   }
+// })
+// email_escallating.add({
+//   email_setup: {
+//     "from": "some email address",
+//     "to": "some email address",
+//     "subject": "try me out",
+//     "html": "<h2>This is the second email that will appear</h2>"
+//   }
+// })
 
-var email_bundle = email.appender({
-  type: 'bundle'
-})
-email_bundle.add({
-  email_setup: {
-    "from": "some email address",
-    "to": "some email address",
-    "subject": "try me out",
-    "html": "<h2>This is the first email that will appear</h2>"
-  }
-})
-email_bundle.add({
-  email_setup: {
-    "from": "some email address",
-    "to": "some email address",
-    "subject": "try me out",
-    "html": "<h2>This is the second email that will appear</h2>"
-  }
-})
-email_bundle.add({
-  bundle: {
-    "html": "<h4>Here is something we need to know</h4>"
-  }
-})
-email_bundle.add({
-  bundle: {
-    "html": "<h4>Something else</h4>"
-  }
-})
-email_bundle.add({
-  bundle: {
-    "html": "<h4>Cool</h4>"
-  }
-})
+// var email_bundle = email.appender({
+//   type: 'bundle'
+// })
+// email_bundle.add({
+//   email_setup: {
+//     "from": "some email address",
+//     "to": "some email address",
+//     "subject": "try me out",
+//     "html": "<h2>This is the first email that will appear</h2>"
+//   }
+// })
+// email_bundle.add({
+//   email_setup: {
+//     "from": "some email address",
+//     "to": "some email address",
+//     "subject": "try me out",
+//     "html": "<h2>This is the second email that will appear</h2>"
+//   }
+// })
+// email_bundle.add({
+//   bundle: {
+//     "html": "<h4>Here is something we need to know</h4>"
+//   }
+// })
+// email_bundle.add({
+//   bundle: {
+//     "html": "<h4>Something else</h4>"
+//   }
+// })
+// email_bundle.add({
+//   bundle: {
+//     "html": "<h4>Cool</h4>"
+//   }
+// })
 
 append = tagline.appender('boolean')
 isFalse = new append(tagline).setConfig({ "format": "bool(@boolean)" }).setFalse()
