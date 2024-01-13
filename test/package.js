@@ -6,7 +6,7 @@ const packageMock = {
   "author": {
     "name": "Jim Manton"
   },
-  "version": "5.3.20",
+  "version": "5.3.21",
   "bundleDependencies": [],
   "dependencies": {
     "chai": "^5.0.0",
@@ -15,7 +15,7 @@ const packageMock = {
     "mocha": "^10.1.0",
     "node-console-colors": "^1.1.4",
     "node-dogstatsd": "^0.0.7",
-    "queueobj": "^15.1.0",
+    "queueobj": "^15.1.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
@@ -73,6 +73,7 @@ const packageMock = {
   "name": "log4js-tagline",
   "start": "node app.js"
 }
+
 describe('package.json', function () {
   it('should pass', function () {
     const difference = jsonHasDifferences(packagejson, packageMock)
