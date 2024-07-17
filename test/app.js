@@ -20,8 +20,8 @@ describe('app', function () {
             assert(require('log4js'))
         })
 
-        it.skip('email-smtp-cron-delivery', function () {
-            assert(require('email-smtp-cron-delivery'))
+        it('queueobj', function () {
+            assert(require('queueobj'))
         })
 
         it('diffler', function () {
@@ -30,10 +30,6 @@ describe('app', function () {
         
         it('node-console-colors', function () {
             assert(require('node-console-colors'))
-        })
-                
-        it.skip('chai', function () {
-            assert(require('chai'))
         })
     })
 
