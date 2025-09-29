@@ -2,7 +2,7 @@
   "author": {
     "name": "Jim Manton"
   },
-  "version": "5.3.25",
+  "version": "5.3.26",
   "bundleDependencies": [],
   "dependencies": {
     "chai": "^5.3.3",
@@ -12,7 +12,7 @@
     "mocha": "^10.8.2",
     "node-console-colors": "^2.0.5",
     "node-dogstatsd": "^0.0.7",
-    "queueobj": "^15.1.5",
+    "queueobj": "^15.1.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
   },
