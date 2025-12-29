@@ -6,7 +6,7 @@ const packageMock = {
   "author": {
     "name": "Jim Manton"
   },
-  "version": "5.3.27",
+  "version": "5.3.28",
   "bundleDependencies": [],
   "dependencies": {
     "chai": "^5.3.3",
@@ -18,7 +18,7 @@ const packageMock = {
     "node-dogstatsd": "^0.0.7",
     "queueobj": "^15.1.6",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.3"
+    "typescript": "^5.9.2"
   },
   "devDependencies": {
     "minimist": ">=1.2.6"
