@@ -2,27 +2,21 @@
   "author": {
     "name": "Jim Manton"
   },
-  "version": "5.3.29",
+  "version": "5.3.30",
   "bundleDependencies": [],
   "dependencies": {
-    "chai": "^5.3.3",
-    "diffler": "^2.0.4",
     "log4js": "^6.9.1",
-    "log4js-tagline": "^5.3.24",
-    "mocha": "^10.8.2",
     "node-console-colors": "^2.0.5",
     "node-dogstatsd": "^0.0.7",
-    "queueobj": "^15.1.6",
+    "queueobj": "^15.1.8",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
     "minimist": ">=1.2.6"
   },
   "scripts": {
     "start": "node app.js",
-    "test": "mocha",
-    "ditched": "ditched -a",
     "test_basic": "node ./tests/basic",
     "test_qAll": "node ./tests/queueobj/all",
     "test_qTopOne": "node ./tests/queueobj/topone",
@@ -54,7 +48,6 @@
     "node",
     "email",
     "cron",
-    "mocha",
     "datadog"
   ],
   "homepage": "https://github.com/jman717/log4js-tagline",

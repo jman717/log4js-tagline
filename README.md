@@ -35,12 +35,6 @@ Installation
 npm install log4js-tagline
 ```
 
-Mocha Test
----------
-```
-npm test
-```
-
 General Setup Tests. 
 ---------
 All tests starting with the letter test_q... are examples of queueObj. The letters beginning with test_qj... indicate queueObj Json samples.
@@ -66,5 +60,4 @@ npm run test_qjNameMatching
 npm run test_qjNameNonMatching
 npm run test_qjVersionMatching
 npm run test_qjVersionNonMatching
-
 ```
