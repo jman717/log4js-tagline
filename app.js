@@ -135,45 +135,53 @@ class TagLine {
 
     tagline() {
         try {
-            var t = setup_owner, color
-
+            var t = setup_owner, xcolor
             var p = parent
             if (owner.to_console.show) {
-                switch (t.method) {
-                    case "trace":
-                        color = (typeof owner.to_console.color.trace == 'string') ? owner.to_console.color.trace : "blue"
-                        break
-                    case "debug":
-                        color = (typeof owner.to_console.color.debug == 'string') ? owner.to_console.color.debug : "maginta"
-                        break
-                    case "info":
-                        color = (typeof owner.to_console.color.info == 'string') ? owner.to_console.color.info : "gray"
-                        break
-                    case "warn":
-                        color = (typeof owner.to_console.color.warn == 'string') ? owner.to_console.color.warn : "yellow"
-                        break
-                    case "warn":
-                        color = (typeof owner.to_console.color.warn == 'string') ? owner.to_console.color.warn : "yellow"
-                        break
-                    case "error":
-                        color = (typeof owner.to_console.color.error == 'string') ? owner.to_console.color.error : "red"
-                        break
-                    case "warn":
-                        color = (typeof owner.to_console.color.warn == 'string') ? owner.to_console.color.warn : "yellow"
-                        break
-                    case "fatal":
-                        color = (typeof owner.to_console.color.fatal == 'string') ? owner.to_console.color.fatal : "red"
-                        break
-                    case "mark":
-                        color = (typeof owner.to_console.color.mark == 'string') ? owner.to_console.color.mark : "white"
-                        break
-                    case "do_not_show":
-                        return
-                    default:
-                        color = "gray"
-                        break
+                //color = this.getColorCode()   //jrm debug
+                try {
+                    switch (owner.to_console.color[t.method].toLowerCase()) {
+                        case "black":
+                            xcolor = `\u001b[30m `
+                            break
+                        case "red":
+                            xcolor = `\u001b[31m `
+                            break
+                        case "green":
+                            xcolor = `\u001b[32m `
+                            break
+                        case "yellow":
+                            xcolor = `\u001b[33m `
+                            break
+                        case "blue":
+                        case "bgblue":
+                            xcolor = `\u001b[34m `
+                            break
+                        case "magenta:":
+                            xcolor = `\u001b[35m `
+                            break
+                        case "cyan":
+                            xcolor = `\u001b[36m `
+                            break
+                        case "white":
+                            xcolor = `\u001b[37m `
+                            break
+                        case "reset":
+                            xcolor = `\u001b[0m `
+                            break
+                        default:
+                            xcolor = `\u001b[37m `  // white
+                    }
+                } catch {
+                    xcolor = `\u001b[37m `  // white
                 }
-                console.log(JSON.stringify(t.args)[color])
+
+                if (t.args.length > 0) {
+                    t.args.forEach(function (xline) {
+                        console.log(`${xcolor}` + xline + `\u001b[37m `)
+                    })
+                } else
+                    console.log(`${xcolor}` + JSON.stringify(t.args) + `\u001b[37m `)
             }
             if (p.showLine.indexOf(t.method) > -1) {
                 t._log(t.method, t.args)

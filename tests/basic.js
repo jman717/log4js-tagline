@@ -1,10 +1,10 @@
 var log4js = require("log4js"),
-  log4js_tagline = require("../app.js")
+  log4js_tagline = require("../app.js");
 
 log4js.configure({
   appenders: { myLog: { type: 'file', filename: 'my.log' } },
   categories: { default: { appenders: ['myLog'], level: 'debug' } }
-})
+});
 
 tagline = new log4js_tagline(log4js, {
   "display": ["trace", "debug", "info", "warn", "error", "fatal", "mark"],
@@ -30,7 +30,9 @@ isTrue = new append(tagline).setConfig({ "format": "bool(@boolean)" }).setTrue()
 display = new append(tagline).setConfig({ "format": "bool(@boolean)" }).setTrue()
 
 console.log('show=' + typeof display.show)
+  console.log(`jrm debug 11.00`)
 logger.debug('show this line').tag(display.show(isTrue.getValue())).tagline()
+  console.log(`jrm debug 11.01`)
 logger.debug('do not show this line').tag(display.show(isFalse.getValue())).tagline()
 
 append = tagline.appender('route')

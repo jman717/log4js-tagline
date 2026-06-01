@@ -12,7 +12,7 @@ tagline = new log4js_tagline(log4js, {
   "output": {
     "to_console": {
       "show": true, "color": {
-        "trace": "blue",
+        "trace": "red",
         "debug": "magenta",
         "info": "bgBlue",
         "warn": "yellow",

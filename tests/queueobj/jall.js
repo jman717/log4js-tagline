@@ -46,7 +46,6 @@ var file_object = class file_obj {
       try {
           t.id = props.id
           t.log = props.log
-          console.log(`jrm debug 2/26 log(${typeof t.log})`)
           t.name = props.name
           t.path = props.relative_path
           t.absolute_path = props.absolute_path
