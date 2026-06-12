@@ -2,7 +2,7 @@
   "author": {
     "name": "Jim Manton"
   },
-  "version": "5.4.0",
+  "version": "5.4.1",
   "bundleDependencies": [],
   "dependencies": {
     "log4js": "^6.9.1",
