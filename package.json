@@ -8,9 +8,7 @@
     "log4js": "^6.9.1",
     "node-console-colors": "^2.0.5",
     "node-dogstatsd": "^0.0.7",
-    "queueobj": "^15.1.8",
-    "ts-node": "^10.9.2",
-    "typescript": "^6.0.3"
+    "queueobj": "^15.1.9"
   },
   "devDependencies": {
     "minimist": ">=1.2.6"
