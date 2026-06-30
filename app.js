@@ -61,8 +61,8 @@ class TagLine {
                     this.original = original
                     this.method = method
                     this.log = log
-                    this.xtrace = t.getTrace(log)
-                    this.args = ['(msg: ' + msg + ')']
+                    //this.xtrace = t.getTrace(log)  jrm debug does little good in this context, try to find the file it's coming from
+                    this.args = [`(msg: ${msg})`]
                     setup_owner = this
                     this.tagline = t.tagline
                     this.tag = t.tag
@@ -97,95 +97,121 @@ class TagLine {
         }
     }
 
-    getTrace(caller) {
-        var t = this
-        try {
-            var original = Error.prepareStackTrace,
-                error = {}
-            Error.prepareStackTrace = t.prepareStackTrace
-            Error.captureStackTrace(error, caller || getTrace)
-            var stack = error.stack
-            Error.prepareStackTrace = original
-            return stack
-        } catch (e) {
-            e.message = "log4js-tagline app.js getTrace error: " + e.message
-            console.log(e.message)
-            throw (e)
-        }
-    }
+    // getTrace(caller) {   jrm debug
+    //     var t = this
+    //     try {
+    //         var original = Error.prepareStackTrace,
+    //             error = {}
+    //         Error.prepareStackTrace = t.prepareStackTrace
+    //         Error.captureStackTrace(error, caller || getTrace)
+    //         var stack = error.stack
+    //         Error.prepareStackTrace = original
+    //         return stack
+    //     } catch (e) {
+    //         e.message = "log4js-tagline app.js getTrace error: " + e.message
+    //         console.log(e.message)
+    //         throw (e)
+    //     }
+    // }
 
-    prepareStackTrace(error, structuredStackTrace) {
-        var t = this
-        var trace = structuredStackTrace[0]
-        if (typeof trace == 'undefined')
-            return
-        if (typeof trace.getFileName == 'undefined')
-            return
-        return {
-            // method name
-            name: trace.getMethodName() || trace.getFunctionName() || "<anonymous>",
-            // file name
-            file: trace.getFileName(),
-            // line number
-            line: trace.getLineNumber(),
-            // column number
-            column: trace.getColumnNumber()
-        }
-    }
+    // prepareStackTrace(error, structuredStackTrace) {
+    //     var t = this
+    //     var trace = structuredStackTrace[0]
+    //     if (typeof trace == 'undefined')
+    //         return
+    //     if (typeof trace.getFileName == 'undefined')
+    //         return
+    //     return {
+    //         // method name
+    //         name: trace.getMethodName() || trace.getFunctionName() || "<anonymous>",
+    //         // file name
+    //         file: trace.getFileName(),
+    //         // line number
+    //         line: trace.getLineNumber(),
+    //         // column number
+    //         column: trace.getColumnNumber()
+    //     }
+    // }
 
     tagline() {
+        const colorize = (...args) => ({
+            black: `\x1b[30m${args.join(" ")}\x1b[0m`,
+            red: `\x1b[31m${args.join(" ")}\x1b[0m`,
+            green: `\x1b[32m${args.join(" ")}\x1b[0m`,
+            yellow: `\x1b[33m${args.join(" ")}\x1b[0m`,
+            blue: `\x1b[34m${args.join(" ")}\x1b[0m`,
+            magenta: `\x1b[35m${args.join(" ")}\x1b[0m`,
+            cyan: `\x1b[36m${args.join(" ")}\x1b[0m`,
+            white: `\x1b[37m${args.join(" ")}\x1b[0m`,
+            bgBlack: `\x1b[40m${args.join(" ")}\x1b[0m`,
+            bgRed: `\x1b[41m${args.join(" ")}\x1b[0m`,
+            bgGreen: `\x1b[42m${args.join(" ")}\x1b[0m`,
+            bgYellow: `\x1b[43m${args.join(" ")}\x1b[0m`,
+            bgBlue: `\x1b[44m${args.join(" ")}\x1b[0m`,
+            bgMagenta: `\x1b[45m${args.join(" ")}\x1b[0m`,
+            bgCyan: `\x1b[46m${args.join(" ")}\x1b[0m`,
+            bgWhite: `\x1b[47m${args.join(" ")}\x1b[0m`
+        })
         try {
             var t = setup_owner, xcolor
             var p = parent
             if (owner.to_console.show) {
-                //color = this.getColorCode()   //jrm debug
-                try {
-                    switch (owner.to_console.color[t.method].toLowerCase()) {
-                        case "black":
-                            xcolor = `\u001b[30m `
-                            break
-                        case "red":
-                            xcolor = `\u001b[31m `
-                            break
-                        case "green":
-                            xcolor = `\u001b[32m `
-                            break
-                        case "yellow":
-                            xcolor = `\u001b[33m `
-                            break
-                        case "blue":
-                        case "bgblue":
-                            xcolor = `\u001b[34m `
-                            break
-                        case "magenta:":
-                            xcolor = `\u001b[35m `
-                            break
-                        case "cyan":
-                            xcolor = `\u001b[36m `
-                            break
-                        case "white":
-                            xcolor = `\u001b[37m `
-                            break
-                        case "reset":
-                            xcolor = `\u001b[0m `
-                            break
-                        default:
-                            xcolor = `\u001b[37m `  // white
+                //jrm debug work here https://labex.io/tutorials/colorful-console-output-with-javascript-28200
+                t.args.forEach(function (xline) {
+                    if (owner.to_local_file) {
+                        //console.log(`method: ${t.method}`)
+                        switch (owner.to_console.color[t.method].toLowerCase()) {
+                            case "black":
+                                console.log(colorize(xline).black)
+                                break
+                            case "red":
+                                console.log(colorize(xline).red)
+                                break
+                            case "green":
+                                console.log(colorize(xline).green)
+                                break
+                            case "yellow":
+                                console.log(colorize(xline).yellow)
+                                break
+                            case "magenta":
+                                console.log(colorize(xline).magenta)
+                                break
+                            case "blue":
+                                console.log(colorize(xline).blue)
+                                break
+                            case "cyan":
+                                console.log(colorize(xline).cyan)
+                                break
+                            case "bggreen":
+                                console.log(colorize(xline).bgGreen)
+                                break
+                            case "bgblue":
+                                console.log(colorize(xline).bgBlue)
+                                break
+                            case "bgblack":
+                                console.log(colorize(xline).bgBlack)
+                                break
+                            case "bgred":
+                                console.log(colorize(xline).bgRed)
+                                break
+                            case "bgyellow":
+                                console.log(colorize(xline).bgYellow)
+                                break
+                            case "bgmagenta":
+                                console.log(colorize(xline).bgMagenta)
+                                break
+                            case "bgcyan":
+                                console.log(colorize(xline).bgCyan)
+                                break
+                            default:
+                                console.log(colorize(xline).white)
+                        }
                     }
-                } catch {
-                    xcolor = `\u001b[37m `  // white
-                }
-
-                if (t.args.length > 0) {
-                    t.args.forEach(function (xline) {
-                        console.log(`${xcolor}` + xline + `\u001b[37m `)
-                    })
-                } else
-                    console.log(`${xcolor}` + JSON.stringify(t.args) + `\u001b[37m `)
+                })
             }
-            if (p.showLine.indexOf(t.method) > -1) {
+            if (p.showLine.indexOf(t.method) > -1)
                 t._log(t.method, t.args)
-            }
+
             return t
         } catch (e) {
             e.message = "log4js-tagline app.js tagline error: " + e.message

@@ -1,33 +1,13 @@
-var log4js = require("log4js"),
-  log4js_tagline = require("../../app.js"),
-  queue = require("queueobj")
+"use strict"
 
-log4js.configure({
-  appenders: { myLog: { type: 'file', filename: 'my.log' } },
-  categories: { default: { appenders: ['myLog'], level: 'debug' } }
-})
+/*
+* @author Jim Manton: jrman@risebroadband.net
+* @since 2026-06-26
+*/
 
-tagline = new log4js_tagline(log4js, {
-  "display": ["trace", "debug", "info", "warn", "error", "fatal", "mark"],
-  "output": {
-    "to_console": {
-      "show": true, "color": {
-        "trace": "blue",
-        "debug": "magenta",
-        "info": "bgBlue",
-        "warn": "yellow",
-        "error": "red",
-        "fatal": "red",
-        "mark": "white"
-      }
-    },      /* send output to console.log */
-    "to_local_file": true,   /* send output to the local file */
-    "to_datadog": true        /* send output to datadog (when the datadog appender is configured) */
-  }
-})
+var queue = require("queueobj")
 
-const logger = log4js.getLogger('myLog')
-logger.level = 'debug'
+const base = require('./t_base')
 
 var tst1 = class test1 {
   constructor(props) {
@@ -41,7 +21,7 @@ var tst1 = class test1 {
 
   process(callback) {
     let t = this, fname = "name_matching.test1.process"
-    t.log({ msg: `This object (${fname}) is id (${t.id}) name (${t.name}). Do stuff here`.bgBrightGreen, type: "info" })
+    t.log({ msg: `This object (${fname}) is id (${t.id}) name (${t.name}). Do stuff here`.bgGreen, type: "info" })
     callback({ success: { msg: `processing all ${t.name}` } })
   }
 }
@@ -58,7 +38,7 @@ var tst2 = class test2 {
 
   process(callback) {
     let t = this, fname = "name_matching.test2.process"
-    t.log({ msg: `This object (${fname}) is id (${t.id}) name (${t.name}). Do stuff here`.bgBrightGreen, type: "info" })
+    t.log({ msg: `This object (${fname}) is id (${t.id}) name (${t.name}). Do stuff here`.bgGreen, type: "info" })
     setTimeout(() => {
       callback({ success: { msg: `processing all ${t.name}` } })
     }, 4000)
@@ -77,9 +57,13 @@ var tst3 = class test3 {
 
   process(callback) {
     let t = this, fname = "name_matching.test3.process"
-    t.log({ msg: `This object (${fname}) is id (${t.id}) name (${t.name}). Do stuff here`.bgBrightGreen, type: "info" })
+    t.log({ msg: `This object (${fname}) is id (${t.id}) name (${t.name}). Do stuff here`.bgGreen, type: "info" })
     // callback({success: { msg: `processing all ${t.name}` }})
-    callback({ error: { msg: `there is some problem thrown here on ${t.name}` } })
+    try {
+      throw new Error(`there is some problem thrown here on ${t.name}`)
+    } catch (e) {
+      callback({ error: { 'msg': e.message, 'stack': e.stack } })
+    }
   }
 }
 
@@ -95,34 +79,46 @@ var tst4 = class test4 {
 
   process(callback) {
     let t = this, fname = "name_matching.test4.process"
-    t.log({ msg: `This object (${fname}) is id (${t.id}) name (${t.name}). Do stuff here`.bgBrightGreen, type: "info" })
+    t.log({ msg: `This object (${fname}) is id (${t.id}) name (${t.name}). Do stuff here`.bgGreen, type: "info" })
     callback({ success: { msg: `processing all ${t.name}` } })
   }
 }
 
-var qObj = new queue()
-
-qObj.init().process({
-  appender: "name",
-  xlog: {appender: "log4js-tagline", logger: logger},
-  exclude_logMsg: ["debug"],   /* example ["debug", "info"] */
-  exclude_names: ["test 2", "test 4"],
-  process_objects: [tst1, tst2, tst3, tst4]
-}).then((success) => {
-  qObj.logMsg({ msg: `test success: name matching objects processed with no errors`, type: "success" })
-}, (error) => {
-  if (typeof error == "string") {
-    qObj.logMsg({ msg: `error: ${error}`, type: "error" })
-  } else {
-    let add_s = (error.error_count > 1) ? 's' : ''
-    qObj.logMsg({ msg: `${error.error_count} error${add_s} detected`, type: "error" })
+var tobj = class top_one extends base {
+  constructor() {
+    super()
+    var t = this
+    var qObj = new queue()
+    qObj.init().process({
+      appender: "name",
+      xlog: { appender: "log4js-tagline", logger: t.logger },
+      exclude_logMsg: ["debug"],   /* example ["debug", "info"] */
+      exclude_names: ["test 2", "test 4"],
+      process_objects: [tst1, tst2, tst3, tst4]
+    }).then((success) => {
+      qObj.logMsg({ msg: `test success: {msg: "all objects processed with no errors"}`, type: "success" })
+    }, (error) => {
+      if (typeof error == "string") {
+        qObj.logMsg({ msg: `error: ${error}`, type: "error" })
+      } else {
+        let add_s = (error.error_count > 1) ? 's' : ''
+        qObj.logMsg({ msg: `${error.error_count} error${add_s} detected`, type: "error" })
+      }
+      var err = new Error('promise failed')
+      qObj.logMsg({ msg: err.message, 'stack': err.stack, 'type': "error" })
+    })
   }
-})
+}
+
+var tst = new tobj()
 
 /* Expected output in my.log
-[2023-02-27T20:30:52.556] [info] myLog - (msg: "This object (name_matching.test1.process) is id (1) name (test 1). Do stuff here")
-[2023-02-27T20:30:52.559] [info] myLog - (msg: "This object (name_matching.test3.process) is id (3) name (test 3). Do stuff here")
-[2023-02-27T20:30:52.561] [info] myLog - (msg: "processing all test 1")
-[2023-02-27T20:30:52.562] [error] myLog - (msg: "there is some problem thrown here on test 3")
-[2023-02-27T20:30:52.566] [error] myLog - (msg: "1 error detected")
+[2026-06-29T21:33:38.688] [info] myLog - (msg: "This object (name_matching.test1.process) is id (1) name (test 1). Do stuff here")
+[2026-06-29T21:33:38.692] [info] myLog - (msg: "This object (name_matching.test3.process) is id (3) name (test 3). Do stuff here")
+[2026-06-29T21:33:38.693] [info] myLog - (msg: "processing all test 1")
+[2026-06-29T21:33:38.693] [error] myLog - (msg: "there is some problem thrown here on test 3")
+[2026-06-29T21:33:38.695] [error] myLog - (msg: "at test3.process (C:\\Users\\jimma\\GitHub\\log4js-tagline\\tests\\queueobj\\nonnamematching.js:63:13)")
+[2026-06-29T21:33:38.698] [error] myLog - (msg: "1 error detected")
+[2026-06-29T21:33:38.699] [error] myLog - (msg: "promise failed")
+[2026-06-29T21:33:38.700] [error] myLog - (msg: "at C:\\Users\\jimma\\GitHub\\log4js-tagline\\tests\\queueobj\\nonnamematching.js:107:17")
 */

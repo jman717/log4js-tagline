@@ -1,130 +1,113 @@
-var log4js = require("log4js"),
-  log4js_tagline = require("../app.js");
+"use strict"
 
-log4js.configure({
-  appenders: { myLog: { type: 'file', filename: 'my.log' } },
-  categories: { default: { appenders: ['myLog'], level: 'debug' } }
-});
+/*
+* @author Jim Manton: jrman@risebroadband.net
+* @since 2026-06-26
+*/
 
-tagline = new log4js_tagline(log4js, {
-  "display": ["trace", "debug", "info", "warn", "error", "fatal", "mark"],
-  "output": {
-    "to_console": { "show": true, "color": {"trace": "blue", 
-                                            "debug": "magenta", 
-                                            "info": "bgBlue", 
-                                            "warn": "yellow", 
-                                            "error": "red", 
-                                            "fatal": "red", 
-                                            "mark": "white" }},      /* send output to console.log */
-    "to_local_file": true,   /* send output to the local file */
-    "to_datadog": true        /* send output to datadog (when the datadog appender is configured) */
+var queue = require("queueobj")
+
+const base = require('./queueobj/t_base')
+
+var tst1 = class test1 {
+  constructor(props) {
+    let t = this
+    t.log = props.log
+    t.id = props.id
+    t.tagline = props.tagline
+    console.log(`jrm debug 222: ${typeof props.tagline}`)
+
+    t.process = t.process.bind(t)
   }
-})
 
-const logger = log4js.getLogger('myLog')
-logger.level = 'debug'
+  process(callback) {
+    let t = this, fname = "basic.process"
+    var hip = '123.45.678.910'
 
-append = tagline.appender('boolean')
-isFalse = new append(tagline).setConfig({ "format": "bool(@boolean)" }).setFalse()
-isTrue = new append(tagline).setConfig({ "format": "bool(@boolean)" }).setTrue()
-display = new append(tagline).setConfig({ "format": "bool(@boolean)" }).setTrue()
+    console.log(`jrm debug 111`)
 
-console.log('show=' + typeof display.show)
-  console.log(`jrm debug 11.00`)
-logger.debug('show this line').tag(display.show(isTrue.getValue())).tagline()
-  console.log(`jrm debug 11.01`)
-logger.debug('do not show this line').tag(display.show(isFalse.getValue())).tagline()
-
-append = tagline.appender('route')
-rte = new append(tagline).setConfig({ "format": "rte(@route)" }).setInput('/test')
-
-append = tagline.appender('line')
-lne = new append(tagline).setConfig({ "format": "lne(@name(): @file:@line:@column)" })
-
-try {
-  var hip = '123.45.678.910'
-
-  datadog = tagline.init({
-    "datadog": {
-      "StatsD_Ip": hip
-    }
-  }).appender('datadog')
-  increment = new datadog(tagline).setConfig({ "format": "increment(@data, @simple_rate, @tags)" }).setData('some datadog increment message').setRate(4).setTags('env:test')
-  incrementBy = new datadog(tagline).setConfig({ "format": "incrementBy(@data, @value, @simple_rate, @tags)" }).setData('some datadog incrementBy message').setValue(400).setRate(1).setTags('env:test')
-  gauge = new datadog(tagline).setConfig({ "format": "gauge(@data, @value, @simple_rate, @tags)" }).setData('some datadog gauge message').setValue(400).setRate(1).setTags('env:staging:east')
-  histogram = new datadog(tagline).setConfig({ "format": "histogram(@data, @value, @simple_rate, @tags)" }).setData('some datadog histogram message').setValue(1000).setRate(1).setTags('env:histogram')
-  set = new datadog(tagline).setConfig({ "format": "set(@data, @value, @simple_rate, @tags)" }).setData('some datadog set message').setValue(20).setRate(15).setTags('env:set')
-
-  logger.info('this is an info line').tag(lne).tag(increment).tag(incrementBy).tag(gauge).tag(histogram).tag(set).tagline()
-  incrementBy.setValue(600)
-  logger.debug('this is an debug line').tag(incrementBy).tagline()
-  logger.debug('this is an debug line2').tag(display.show(isFalse.getValue())).tag(increment).tagline()
-  logger.debug('this is an debug line3').tag(display.show(isTrue.getValue())).tag(increment).tagline()
-} catch (e) {
-  console.log('error message here(' + e.message + ')')
-}
-
-append = tagline.appender('boolean')
-isFalse = new append(tagline).setConfig({ "format": "bool(@boolean)" }).setFalse()
-isTrue = new append(tagline).setConfig({ "format": "bool(@boolean)" }).setTrue()
-append = tagline.appender('displayLine')
-display = new append(tagline).setConfig({ "format": "display(@boolean)" })
-
-logger.debug('show this line').tag(display.show(isTrue.getValue())).tagline()
-logger.debug('hide this line').tag(display.show(isFalse.getValue())).tagline()
-
-append = tagline.appender('error')
-err = new append(tagline)
-
-append = tagline.appender('class_function')
-cfu = new append(tagline)
-
-append = tagline.appender('anyMsg')
-act = new append(tagline)
-append = tagline.appender('stopwatch')
-stw = new append(tagline)
-stw.setStart()
-logger.info('Hello World log').tag(rte).tag(lne).tagline()
-
-class testClass {
-  call_a_function() {
     try {
-      logger.info('class/function name can be found here').tag(cfu).tag(lne).tagline()
-      throw new Error('This is some sort of an error')
+      t.datadog = t.tagline.init({
+        "datadog": {
+          "StatsD_Ip": hip
+        }
+      }).appender('datadog')
+      t.increment = new t.datadog(t.tagline).setConfig({ "format": "increment(@data, @simple_rate, @tags)" }).setData('some datadog increment message').setRate(4).setTags('env:test')
+      t.incrementBy = new t.datadog(t.tagline).setConfig({ "format": "incrementBy(@data, @value, @simple_rate, @tags)" }).setData('some datadog incrementBy message').setValue(400).setRate(1).setTags('env:test')
+      t.gauge = new t.datadog(t.tagline).setConfig({ "format": "gauge(@data, @value, @simple_rate, @tags)" }).setData('some datadog gauge message').setValue(400).setRate(1).setTags('env:staging:east')
+      t.histogram = new t.datadog(t.tagline).setConfig({ "format": "histogram(@data, @value, @simple_rate, @tags)" }).setData('some datadog histogram message').setValue(1000).setRate(1).setTags('env:histogram')
+      t.set = new t.datadog(t.tagline).setConfig({ "format": "set(@data, @value, @simple_rate, @tags)" }).setData('some datadog set message').setValue(20).setRate(15).setTags('env:set')
+
+      //      t.logger.info('this is an info line').tag(lne).tag(increment).tag(incrementBy).tag(gauge).tag(histogram).tag(set).tagline()
+      t.append = t.tagline.appender('boolean')
+      t.isFalse = new t.append(t.tagline).setConfig({ "format": "bool(@boolean)" }).setFalse()
+      t.isTrue = new t.append(t.tagline).setConfig({ "format": "bool(@boolean)" }).setTrue()
+
+
+      t.incrementBy.setValue(600)
+      t.log({ msg: `This object (${fname}) is id (${t.id}). this is a debug line`, type: "info" })
+      t.log({ msg: `This object (${fname}) is id (${t.id}). this is a debug line2 isFalse(${t.isFalse.getValue()}) increment(${t.increment.value})`, type: "info" })
+      t.log({ msg: `This object (${fname}) is id (${t.id}). this is a debug line3 isFalse(${t.isTrue.getValue()})`, type: "info" })
+
+      t.append = t.tagline.appender('route')
+      t.rte = new t.append(t.tagline).setConfig({ "format": "rte(@route)" }).setInput('/test')
+
+      t.append = t.tagline.appender('line')
+      t.lne = new t.append(t.tagline).setConfig({ "format": "lne(@name(): @file:@line:@column)" })
+
+      t.append = t.tagline.appender('anyMsg')
+      t.act = new t.append(t.tagline)
+      t.append = t.tagline.appender('stopwatch')
+      t.stw = new t.append(t.tagline)
+      t.stw.setStart()
+
+      t.act.setInput('some messages')
+      t.log({ msg: `Hello World log (${fname}) is id (${t.id}). ${t.rte.format_line()} stopwatch({${t.stw.setStop().format_line()}))`, type: "info" })
+
+      callback({ success: { msg: `processing all test1` } })
     } catch (e) {
-      logger.error('error here').tag(err.setError(e)).tag(stw.setStop()).tag(rte).tagline()
+      callback({ error: { 'msg': e.message, 'stack': e.stack } })
     }
   }
 }
-var testThisClass = new testClass()
-testThisClass.call_a_function()
-logger.error('error this').tag(err.setInput("A free form error message.")).tag(rte).tagline()
 
-logger.debug('hello from stopwatch').tag(act.setInput('some messages')).tag(stw.setStop()).tag(rte).tagline()
-
-someNumber = 1000
-if (act.getCount() > someNumber) {
-  tagline.setOptions({ display: ["trace", "debug", "info", "warn", "error", "fatal", "mark"] })
-} else {
-  tagline.setOptions({ display: ["error", "fatal"] })   //just display errors and fatal
+var tbase = class xbase extends base {
+  constructor() {
+    super()
+    var t = this
+    try {
+      var qObj = new queue()
+      qObj.init().process({
+        appender: "with_tagline",
+        xlog: { appender: "log4js-tagline", logger: t.logger },
+        exclude_logMsg: ["debug"],   /* example ["debug", "info"] */
+        tagline: t.tagline,
+        process_objects: [tst1]
+      }).then((success) => {
+        qObj.logMsg({ msg: `test success: {msg: "all objects processed with no errors"}`, type: "success" })
+      }, (error) => {
+        if (typeof error == "string") {
+          qObj.logMsg({ msg: `error: ${error}`, type: "error" })
+        } else {
+          let add_s = (error.error_count > 1) ? 's' : ''
+          qObj.logMsg({ msg: `${error.error_count} error${add_s} detected`, type: "error" })
+        }
+        var err = new Error('promise failed')
+        qObj.logMsg({ msg: err.message, 'stack': err.stack, 'type': "error" })
+      })
+    } catch (e) {
+      console.log('error message here(' + e.message + ')')
+    }
+  }
 }
 
-tagline.setOptions({ display: ["trace", "info", "warn", "error", "fatal", "mark"] })    //to display all tags except debug
-
-setTimeout(data => {
-  console.log('Done with test. Output in my.log')
-  process.exit()
-}, 1500)
+var tst = new tbase()
 
 /* Expected output in my.log
-[2019-08-08T14:01:58.402] [debug] myLog - (msg: show this line) bool()
-[2019-08-08T14:01:58.434] [info] myLog - (msg: this is an info line) lne(<anonymous>(): log4js-tagline/test.js:56:10)
-[2019-08-08T14:01:58.435] [debug] myLog - (msg: this is an debug line)
-[2019-08-08T14:01:58.440] [debug] myLog - (msg: this is an debug line3) bool()
-[2019-08-08T14:01:58.988] [debug] myLog - (msg: show this line) display(@boolean)
-[2019-08-08T14:01:59.091] [info] myLog - (msg: Hello World log) rte(/test) lne(<anonymous>(): log4js-tagline/test.js:303:8)
-[2019-08-08T14:01:59.147] [info] myLog - (msg: class/function name can be found here) class/function name(testClass.call_a_function) lne(call_a_function(): log4js-tagline/test.js:308:14)
-[2019-08-08T14:01:59.169] [error] myLog - (msg: error here) error(testClass.call_a_function: This is some sort of an error) stopwatch(8/8/2019, 2:01:59 PM - 8/8/2019, 2:01:59 PM = 0.097/mili) rte(/test)
-[2019-08-08T14:01:59.197] [error] myLog - (msg: error this) error(msg: A free form error message.) rte(/test)
-[2019-08-08T14:01:59.220] [debug] myLog - (msg: hello from stopwatch) msg(some messages) stopwatch(8/8/2019, 2:01:59 PM - 8/8/2019, 2:01:59 PM = 0.146/mili) rte(/test)
+[2026-06-29T19:18:33.053] [info] myLog - (msg: "This object (basic.process) is id (1). this is a debug line")
+[2026-06-29T19:18:33.068] [info] myLog - (msg: "This object (basic.process) is id (1). this is a debug line2 isFalse(false) increment(1)")
+[2026-06-29T19:18:33.076] [info] myLog - (msg: "This object (basic.process) is id (1). this is a debug line3 isFalse(true)")
+[2026-06-29T19:18:33.151] [info] myLog - (msg: "Hello World log (basic.process) is id (1). rte(/test) stopwatch({stopwatch(6/29/2026, 7:18:33 PM - 6/29/2026, 7:18:33 PM = 0/mili)))")
+[2026-06-29T19:18:33.153] [info] myLog - (msg: "processing all test1")
+[2026-06-29T19:18:33.156] [info] myLog - (msg: "test success: {msg: \"all objects processed with no errors\"}")
 */

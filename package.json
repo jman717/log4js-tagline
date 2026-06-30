@@ -2,13 +2,14 @@
   "author": {
     "name": "Jim Manton"
   },
-  "version": "5.4.2",
+  "version": "5.5.0",
   "bundleDependencies": [],
   "dependencies": {
     "log4js": "^6.9.1",
+    "sfx": "^0.1.1",
     "node-console-colors": "^2.0.5",
     "node-dogstatsd": "^0.0.7",
-    "queueobj": "^15.1.10"
+    "queueobj": "^15.1.14"
   },
   "devDependencies": {
     "minimist": ">=1.2.6"
